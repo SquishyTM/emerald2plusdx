@@ -396,6 +396,10 @@ LittlerootTown_EventScript_TownSign::
 	msgbox LittlerootTown_Text_TownSign, MSGBOX_SIGN
 	end
 
+LittlerootTown_EventScript_DXSign::
+	msgbox LittlerootTown_Text_DXSign, MSGBOX_SIGN
+	end
+
 LittlerootTown_EventScript_BirchsLabSign::
 	msgbox LittlerootTown_Text_ProfBirchsLab, MSGBOX_SIGN
 	end
@@ -998,6 +1002,10 @@ LittlerootTown_Text_GoodLuckCatchingPokemon:
 LittlerootTown_Text_TownSign:
 	.string "LITTLEROOT TOWN\n"
 	.string "“A town that can't be shaded any hue.”$"
+
+LittlerootTown_Text_DXSign:
+	.string "A new beginning.\n"
+	.string "Will this end poorly?$"
 
 LittlerootTown_Text_ProfBirchsLab:
 	.string "PROF. BIRCH'S POKéMON LAB$"
