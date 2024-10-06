@@ -1,0 +1,35 @@
+raw `
+LittlerootTown_DXHouse1_MapScripts::
+	.byte 0
+LittlerootTown_DXHouse1_EventScript_Azumarill::
+	lock
+	faceplayer
+	waitse
+	playmoncry SPECIES_AZUMARILL, CRY_MODE_NORMAL
+	msgbox LittlerootTown_DXHouse1_Text_Azumarill, MSGBOX_DEFAULT
+	waitmoncry
+	release
+	end
+	
+LittlerootTown_DXHouse1_Text_Azumarill:
+	.string "Azumarill: do u rp$"
+`
+script LittlerootTown_DXHouse1_EventScript_Giftball{
+	lockall
+	showmonpic(SPECIES_MEW, 10, 3)
+	playmoncry(SPECIES_MEW, 0)
+	waitmoncry
+	msgbox(format("You can almost taste it...\NDo you want to eat the Mew?"), MSGBOX_YESNO)
+	if(var(VAR_RESULT) == YES){
+		removeobject(2)
+		playfanfare(MUS_OBTAIN_ITEM)
+		waitfanfare
+		setflag(FLAG_GIFTMON_LITTLEROOT_DXHOUSE)
+	}
+	else{
+		msgbox(format("You decided to be merciful to the critter today..."))
+	}
+	hidemonpic
+	releaseall
+	end
+}
