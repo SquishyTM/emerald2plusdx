@@ -1221,7 +1221,7 @@
 #define FLAG_GIFTMON_LITTLEROOT_DXHOUSE                             0x493 // Mew gift ball in new Littleroot house
 #define FLAG_ITEM_LITTLEROOT_EXP_CHARM                              0x494 
 #define FLAG_ITEM_LITTLEROOT_POTION                                 0x495 
-#define FLAG_UNUSED_0x496                                           0x496 // Unused Flag
+#define FLAG_ITEM_OLDALE_NUGGET                                     0x496
 #define FLAG_UNUSED_0x497                                           0x497 // Unused Flag
 #define FLAG_UNUSED_0x498                                           0x498 // Unused Flag
 #define FLAG_UNUSED_0x499                                           0x499 // Unused Flag
