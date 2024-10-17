@@ -1347,6 +1347,9 @@ void CreateMaleMon(struct Pokemon *mon, u16 species, u8 level)
     }
     while (GetGenderFromSpeciesAndPersonality(species, personality) != MON_MALE);
     CreateMon(mon, species, level, USE_RANDOM_IVS, TRUE, personality, OT_ID_PRESET, otId);
+    bool32 isShiny;
+    isShiny = TRUE;
+    SetMonData(mon, MON_DATA_IS_SHINY, &isShiny);
 }
 
 void CreateMonWithIVsPersonality(struct Pokemon *mon, u16 species, u8 level, u32 ivs, u32 personality)

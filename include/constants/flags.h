@@ -42,7 +42,7 @@
 #define TEMP_FLAGS_END   FLAG_TEMP_1F
 #define NUM_TEMP_FLAGS   (TEMP_FLAGS_END - TEMP_FLAGS_START + 1)
 
-#define FLAG_UNUSED_0x020    0x20 // Unused Flag
+#define P_FLAG_FORCE_SHINY   0x20 // Force Shiny Flag
 #define FLAG_UNUSED_0x021    0x21 // Unused Flag
 #define FLAG_UNUSED_0x022    0x22 // Unused Flag
 #define FLAG_UNUSED_0x023    0x23 // Unused Flag
@@ -1222,7 +1222,7 @@
 #define FLAG_ITEM_LITTLEROOT_EXP_CHARM                              0x494 
 #define FLAG_ITEM_LITTLEROOT_POTION                                 0x495 
 #define FLAG_ITEM_OLDALE_NUGGET                                     0x496
-#define FLAG_UNUSED_0x497                                           0x497 // Unused Flag
+#define FLAG_ITEM_ROUTE_102_POKE_BALL                               0x497
 #define FLAG_UNUSED_0x498                                           0x498 // Unused Flag
 #define FLAG_UNUSED_0x499                                           0x499 // Unused Flag
 #define FLAG_UNUSED_0x49A                                           0x49A // Unused Flag

@@ -1534,3 +1534,102 @@ PetalburgCity_Text_ImLookingForTalentedTrainers:
 	.string "talented TRAINERS.\p"
 # 768 "data/maps/PetalburgCity/scripts.pory"
 	.string "I'm sorry to have taken your time.$"
+
+PetalburgCity_EventScript_NoFairCheating::
+# 772 "data/maps/PetalburgCity/scripts.pory"
+	lock
+# 773 "data/maps/PetalburgCity/scripts.pory"
+	msgbox PetalburgCity_EventScript_NoFairCheating_Text_0
+# 780 "data/maps/PetalburgCity/scripts.pory"
+	msgbox PetalburgCity_EventScript_NoFairCheating_Text_1
+# 785 "data/maps/PetalburgCity/scripts.pory"
+	msgbox PetalburgCity_EventScript_NoFairCheating_Text_2
+# 788 "data/maps/PetalburgCity/scripts.pory"
+	msgbox PetalburgCity_EventScript_NoFairCheating_Text_3
+# 789 "data/maps/PetalburgCity/scripts.pory"
+	msgbox PetalburgCity_EventScript_NoFairCheating_Text_4
+# 794 "data/maps/PetalburgCity/scripts.pory"
+	msgbox PetalburgCity_EventScript_NoFairCheating_Text_5
+# 798 "data/maps/PetalburgCity/scripts.pory"
+	msgbox PetalburgCity_EventScript_NoFairCheating_Text_6
+# 799 "data/maps/PetalburgCity/scripts.pory"
+	msgbox PetalburgCity_EventScript_NoFairCheating_Text_7
+# 801 "data/maps/PetalburgCity/scripts.pory"
+	msgbox PetalburgCity_EventScript_NoFairCheating_Text_8
+# 803 "data/maps/PetalburgCity/scripts.pory"
+	msgbox PetalburgCity_EventScript_NoFairCheating_Text_9
+# 804 "data/maps/PetalburgCity/scripts.pory"
+	applymovement OBJ_EVENT_ID_PLAYER, NoFairCheating
+# 805 "data/maps/PetalburgCity/scripts.pory"
+	waitmovement 0
+# 806 "data/maps/PetalburgCity/scripts.pory"
+	release
+	end
+
+
+# 809 "data/maps/PetalburgCity/scripts.pory"
+NoFairCheating:
+# 810 "data/maps/PetalburgCity/scripts.pory"
+	walk_down
+	step_end
+
+PetalburgCity_EventScript_NoFairCheating_Text_0:
+# 773 "data/maps/PetalburgCity/scripts.pory"
+	.string "I was thinking about why so many in the\nradical left participate in\l'speedrunning'.\p"
+	.string "The reason is the left's\nlack of work ethic ('go fast' rather\lthan 'do it right') and, in a Petersonian\lsense, to elevate alternative sexual\larchetypes in the marketplace\l('fastest mario').\p"
+	.string "Obviously, there are\nexceptions to this and some people\lmore in the center or right also\l'speedrun'.\p However, they more than\nsufficient to prove the rule,\lrather than contrast it.\p"
+	.string "Consider how woke GDQ\nhas been, almost since the very\lbeginning. Your eyes will start to open.\p"
+	.string "Returning to the topic of the work\nethic...\p"
+	.string "A 'speedrunner' may well spend\nhours a day at their craft, but this is\lultimately a meaningless exercise,\lsince they will ultimately accomplish\l exactly that which is done in less\lcollective time by a casual player.\p"
+	.string "This is thus a waste of effort on the\nbehalf of the 'speedrunner'.$"
+
+PetalburgCity_EventScript_NoFairCheating_Text_1:
+# 780 "data/maps/PetalburgCity/scripts.pory"
+	.string "Put more simply, they are spending\ntheir work effort on something that \lsomeone else has already done\l(and done in a way deemed 'correct' by\lthe creator of the artwork).\p"
+	.string "Why do they do this?\p"
+	.string "The answer is quite obvious if you\n think about it.\p The goal is the illusion of speed\n and the desire (SUBCONSCIOUS) to\lpromote radical leftist, borderline\lCommunist ideals of how easy work is.\p"
+	.string "Everyone always says that 'speedruns'\nlook easy.\p That is part of the aesthetic.\p"
+	.string "Think about the phrase\n'fully automated luxury Communism'\l in the context of 'speedrunning'\land I strongly suspect that\lthings will start to 'click' in your mind.$"
+
+PetalburgCity_EventScript_NoFairCheating_Text_2:
+# 785 "data/maps/PetalburgCity/scripts.pory"
+	.string "What happens to the individual in this?\p"
+	.string "Individual accomplishment in\n'speedrunning' is simply waiting\l for another person to steal your\ltechniques in order to defeat you.\p"
+	.string "Where is something like\n'intellectual property' or 'patent'\l in this necessarily communitarian\lprocess?$"
+
+PetalburgCity_EventScript_NoFairCheating_Text_3:
+# 788 "data/maps/PetalburgCity/scripts.pory"
+	.string "Now, as to the sexual archetype\n model and 'speedrunning' generally...$"
+
+PetalburgCity_EventScript_NoFairCheating_Text_4:
+# 789 "data/maps/PetalburgCity/scripts.pory"
+	.string "If you have any passing familiarity with\nJordan Peterson's broader oeuvre\land of Jungian psychology,\lyou likely already know where I'm going\lwith this.\p"
+	.string "However, I will say more for the\n uninitiated.\p"
+	.string "Keep this passage from\n Maps of Meaning (91) in mind:\p"
+	.string "The Archetypal Son... continually\nreconstructs defined territory, as a \lconsequence of the 'assimilation'\lof the unknown (as a consequence\lof 'incestuous' (that is, 'sexual' :\lread creative) union with the\lGreat Mother).\p"
+	.string "In other words, there is\na connection between 'sexuality'\land creativity that we see throughout\ltime (as Peterson points out with\lTiamat and other examples).$"
+
+PetalburgCity_EventScript_NoFairCheating_Text_5:
+# 794 "data/maps/PetalburgCity/scripts.pory"
+	.string "In the sexual marketplace,\nwhich archetypes are simultaneously\ldeemed the most creative and valued\lthe highest?\p"
+	.string "The answer is obviously entrepreneurs\nlike Elon Musk and others.\p"
+	.string "Given that we evolved,\nand each thing we do must have\lan evolutionary purpose (OR CAUSE),\lwhat archetype is the\l'speedrunner' engaged in,\lwho is accomplishing nothing new?\p"
+	.string "They are aiming to make a new\nsexual archetype, based upon 'speed'\lrather than 'doing things right'\land refuse ownership of what\lfew innovations they can provide\lto their own scene, denying creativity\lwithin their very own sexual archetype.$"
+
+PetalburgCity_EventScript_NoFairCheating_Text_6:
+# 798 "data/maps/PetalburgCity/scripts.pory"
+	.string "This is necessarily leftist.$"
+
+PetalburgCity_EventScript_NoFairCheating_Text_7:
+# 799 "data/maps/PetalburgCity/scripts.pory"
+	.string "The obvious protest to this would\nbe the 'glitchless 100% run',\l which in many ways does aim to\lplay the game 'as intended' \lbut seems to simply add the element\lof 'speed' to the equation.\p"
+	.string "This objection is ultimately meaningless\nwhen one considers how long a game\l is intended to be played, in net,\lby the creators, even when under\l'100%' conditions.\pThere is still time and effort wasted\nfor no reason other than\lthe ones I proposed above.$"
+
+PetalburgCity_EventScript_NoFairCheating_Text_8:
+# 801 "data/maps/PetalburgCity/scripts.pory"
+	.string "By now, I am sure that I have\nbothered a number of you and rustled\lquite a few of your feathers.\p"
+	.string "I'm not saying that 'speedrunning' is bad,\nbut rather that, thinking about\lthe topic philosophically,\lthere are dangerous elements within it.$"
+
+PetalburgCity_EventScript_NoFairCheating_Text_9:
+# 803 "data/maps/PetalburgCity/scripts.pory"
+	.string "That is all.$"

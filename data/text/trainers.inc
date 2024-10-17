@@ -295,17 +295,18 @@ Route104_Text_IvanPostBattle:
 	.string "I forgot I had to raise my POKéMON…$"
 
 Route104_Text_BillyIntro:
-	.string "Leaving footprints in the sand is\n"
-	.string "so fun!$"
+	.string "I've just given my POKéMON\n"
+	.string "berries to hold,\l"
+	.string "now they're unstoppable!$"
 
 Route104_Text_BillyDefeat:
-	.string "Waah! I got sand in my runners!\n"
-	.string "They're all gritty!$"
+	.string "Waah! You're strong!\n"
+	.string "My berries weren't enough!$"
 
 Route104_Text_BillyPostBattle:
-	.string "I want to leave my footprints in\n"
-	.string "the sand everywhere, but they\l"
-	.string "disappear quickly…$"
+	.string "When your party grows stronger,\n"
+	.string "you'll want to replace Oran Berries\l"
+	.string "with Sitrus Berries for better healing!$"
 
 Route104_Text_HaleyIntro:
 	.string "Should I…\n"
