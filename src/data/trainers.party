@@ -4803,7 +4803,7 @@ Gender: Female
 Music: Female
 Items: Potion / Potion
 Double Battle: No
-AI: Smart Trainer / Ace Pokemon
+AI: Check Viability / Check Bad Move / Smart Switching / Try to Faint
 
 Geodude
 Level: 16
