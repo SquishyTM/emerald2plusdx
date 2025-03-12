@@ -319,12 +319,16 @@ Class: Team Aqua
 Pic: Aqua Grunt M
 Gender: Male
 Music: Aqua
-Double Battle: No
-AI: Check Bad Move
+Double Battle: Yes
+AI: Basic Trainer
 
 Poochyena
-Level: 11
-IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
+Level: 17
+IVs: 10 HP / 20 Atk / 0 Def / 0 SpA / 0 SpD / 10 Spe
+
+Carvanha
+Level: 17
+IVs: 10 HP / 21 Atk / 11 Def / 1 SpA / 21 SpD / 11 Spe
 
 === TRAINER_GRUNT_WEATHER_INST_1 ===
 Name: GRUNT
@@ -4801,9 +4805,9 @@ Class: Leader
 Pic: Leader Roxanne
 Gender: Female
 Music: Female
-Items: Potion / Potion
+Items: Super Potion / Super Potion
 Double Battle: No
-AI: Check Viability / Check Bad Move / Smart Switching / Try to Faint
+AI: Smart Trainer
 
 Geodude
 Level: 16
@@ -4824,6 +4828,7 @@ IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
 
 Nosepass @ Oran Berry
 Level: 17
+Ability: Sturdy
 IVs: 24 HP / 24 Atk / 24 Def / 24 SpA / 24 SpD / 24 Spe
 - Protect
 - Harden
@@ -5258,11 +5263,15 @@ Pic: School Kid F
 Gender: Female
 Music: Girl
 Double Battle: No
-AI: Check Bad Move
+AI: Basic Trainer
 
 Shroomish
-Level: 9
+Level: 14
 IVs: 1 HP / 1 Atk / 1 Def / 1 SpA / 1 SpD / 1 Spe
+
+Beautifly
+Level: 14
+IVs: 10 HP / 1 Atk / 11 Def / 21 SpA / 11 SpD / 12 Spe
 
 === TRAINER_GEORGIA ===
 Name: GEORGIA
@@ -6026,11 +6035,15 @@ Pic: Youngster
 Gender: Male
 Music: Male
 Double Battle: No
-AI: Check Bad Move
+AI: Smart Trainer
 
-Machop
-Level: 9
-IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
+Joey (Pikachu) @ Light Ball
+Level: 15
+IVs: 0 HP / 0 Atk / 0 Def / 30 SpA / 0 SpD / 30 Spe
+- Electro Ball
+- Thunder Shock
+- Nuzzle
+- Nasty Plot
 
 === TRAINER_BEN ===
 Name: BEN
@@ -6348,15 +6361,16 @@ Double Battle: No
 AI: Check Bad Move
 
 Magikarp
-Level: 5
+Level: 12
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
 Magikarp
-Level: 6
+Level: 14
+Shiny: Yes
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
-Magikarp
-Level: 7
+Feebas
+Level: 14
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
 === TRAINER_CLAUDE ===
@@ -11335,14 +11349,14 @@ Pic: Bug Catcher
 Gender: Male
 Music: Male
 Double Battle: No
-AI: Check Bad Move
+AI: Basic Trainer
 
-Wurmple
-Level: 8
+Dustox
+Level: 14
 IVs: 6 HP / 6 Atk / 6 Def / 6 SpA / 6 SpD / 6 Spe
 
 Nincada
-Level: 8
+Level: 13
 IVs: 6 HP / 6 Atk / 6 Def / 6 SpA / 6 SpD / 6 Spe
 
 === TRAINER_DOUG ===
@@ -11589,11 +11603,11 @@ Pic: Hiker
 Gender: Male
 Music: Hiker
 Double Battle: No
-AI: Check Bad Move
+AI: Basic Trainer
 
-Geodude
-Level: 8
-IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
+Roggenrola
+Level: 15
+IVs: 30 HP / 10 Atk / 20 Def / 0 SpA / 30 SpD / 0 Spe
 
 === TRAINER_ERIC ===
 Name: ERIC
@@ -13901,14 +13915,14 @@ Pic: Hiker
 Gender: Male
 Music: Hiker
 Double Battle: No
-AI: Check Bad Move
+AI: Basic Trainer
 
-Geodude
-Level: 8
+Nosepass
+Level: 15
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
-Geodude
-Level: 8
+Onix
+Level: 15
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
 === TRAINER_JOHNSON ===
@@ -13918,15 +13932,15 @@ Pic: Youngster
 Gender: Male
 Music: Male
 Double Battle: No
-AI: Check Bad Move
+AI: Basic Trainer
 
-Shroomish
-Level: 8
+Oddish
+Level: 14
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
-Lotad
-Level: 8
-IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
+Bellsprout
+Level: 15
+IVs: 0 HP / 15 Atk / 20 Def / 0 SpA / 20 SpD / 10 Spe
 
 === TRAINER_MELINA ===
 Name: MELINA
