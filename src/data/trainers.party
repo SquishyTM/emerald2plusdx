@@ -3180,10 +3180,10 @@ Pic: Black Belt
 Gender: Male
 Music: Intense
 Double Battle: No
-AI: Check Bad Move
+AI: Basic Trainer
 
-Machop
-Level: 13
+Makuhita
+Level: 20
 IVs: 15 HP / 15 Atk / 15 Def / 15 SpA / 15 SpD / 15 Spe
 
 === TRAINER_HITOSHI ===
@@ -4841,32 +4841,32 @@ Class: Leader
 Pic: Leader Brawly
 Gender: Male
 Music: Male
-Items: Super Potion / Super Potion
+Items: Hyper Potion / Hyper Potion / X Attack
 Double Battle: No
-AI: Basic Trainer
+AI: Smart Trainer
 
 Machop
-Level: 16
+Level: 24
 IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
 - Karate Chop
-- Low Kick
+- Thunder Punch
 - Seismic Toss
 - Bulk Up
 
 Meditite
-Level: 16
+Level: 24
 IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
 - Focus Punch
 - Light Screen
 - Reflect
-- Bulk Up
+- Yawn
 
-Makuhita @ Sitrus Berry
-Level: 19
+Hariyama @ Sitrus Berry
+Level: 24
 IVs: 24 HP / 24 Atk / 24 Def / 24 SpA / 24 SpD / 24 Spe
-- Arm Thrust
-- Vital Throw
-- Reversal
+- Brine
+- Force Palm
+- Fake Out
 - Bulk Up
 
 === TRAINER_WATTSON_1 ===
@@ -6401,18 +6401,18 @@ Pic: Fisherman
 Gender: Male
 Music: Hiker
 Double Battle: No
-AI: Check Bad Move
+AI: Basic Trainer
 
-Magikarp
-Level: 10
+Tirtouga
+Level: 19
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
 Tentacool
-Level: 7
+Level: 18
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
-Magikarp
-Level: 10
+Goldeen
+Level: 19
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
 === TRAINER_NED ===
@@ -6422,10 +6422,14 @@ Pic: Fisherman
 Gender: Male
 Music: Hiker
 Double Battle: No
-AI: Check Bad Move
+AI: Basic Trainer
 
 Tentacool
-Level: 11
+Level: 18
+IVs: 1 HP / 1 Atk / 1 Def / 1 SpA / 1 SpD / 1 Spe
+
+Wartortle
+Level: 20
 IVs: 1 HP / 1 Atk / 1 Def / 1 SpA / 1 SpD / 1 Spe
 
 === TRAINER_DALE ===
@@ -7870,11 +7874,15 @@ Pic: Battle Girl
 Gender: Female
 Music: Intense
 Double Battle: No
-AI: Check Bad Move
+AI: Basic Trainer
 
-Meditite
-Level: 13
+Hitmonchan @ Muscle Band
+Level: 23
 IVs: 15 HP / 15 Atk / 15 Def / 15 SpA / 15 SpD / 15 Spe
+- Fire Punch
+- Ice Punch
+- Thunder Punch
+- Karate Chop
 
 === TRAINER_LAURA ===
 Name: LAURA
@@ -7883,10 +7891,10 @@ Pic: Battle Girl
 Gender: Female
 Music: Intense
 Double Battle: No
-AI: Check Bad Move
+AI: Basic Trainer
 
 Meditite
-Level: 13
+Level: 20
 IVs: 18 HP / 18 Atk / 18 Def / 18 SpA / 18 SpD / 18 Spe
 
 === TRAINER_CYNDY_1 ===
@@ -10623,11 +10631,15 @@ Pic: Sailor
 Gender: Male
 Music: Male
 Double Battle: No
-AI: Check Bad Move
+AI: Basic Trainer
 
-Machop
-Level: 13
+Crabrawler @ Muscle Band
+Level: 20
 IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
+- Brick Break
+- Rock Smash
+- Bulk Up
+- Knock Off
 
 === TRAINER_LILITH ===
 Name: LILITH
@@ -10636,10 +10648,10 @@ Pic: Battle Girl
 Gender: Female
 Music: Intense
 Double Battle: No
-AI: Check Bad Move
+AI: Basic Trainer
 
 Meditite
-Level: 13
+Level: 20
 IVs: 18 HP / 18 Atk / 18 Def / 18 SpA / 18 SpD / 18 Spe
 
 === TRAINER_CRISTIAN ===
@@ -10649,10 +10661,14 @@ Pic: Black Belt
 Gender: Male
 Music: Intense
 Double Battle: No
-AI: Check Bad Move
+AI: Basic Trainer
 
-Makuhita
-Level: 13
+Hawlucha
+Level: 22
+IVs: 24 HP / 24 Atk / 24 Def / 24 SpA / 24 SpD / 24 Spe
+
+Combusken
+Level: 23
 IVs: 24 HP / 24 Atk / 24 Def / 24 SpA / 24 SpD / 24 Spe
 
 === TRAINER_SYLVIA ===
