@@ -4841,19 +4841,20 @@ Class: Leader
 Pic: Leader Brawly
 Gender: Male
 Music: Male
-Items: Hyper Potion / Hyper Potion 
+Items: Super Potion
 Double Battle: No
 AI: Smart Trainer / Ace Pokemon
 
 Machop
-Level: 24
+Level: 21
 IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
 - Karate Chop
 - Rock Throw
 - Bulk Up
 
 Meditite
-Level: 24
+Level: 21
+Ability: Telepathy
 IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
 - Focus Punch
 - Light Screen
@@ -4861,12 +4862,11 @@ IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
 - Yawn
 
 Hariyama @ Sitrus Berry
-Level: 24
-IVs: 24 HP / 24 Atk / 24 Def / 24 SpA / 24 SpD / 24 Spe
+Level: 20
+IVs: 5 HP / 12 Atk / 10 Def / 10 SpA / 10 SpD / 10 Spe
 - Brine
 - Force Palm
 - Fake Out
-- Bulk Up
 
 === TRAINER_WATTSON_1 ===
 Name: WATTSON

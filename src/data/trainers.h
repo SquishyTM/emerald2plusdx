@@ -11977,7 +11977,7 @@ F_TRAINER_FEMALE |
 #line 4843
             TRAINER_ENCOUNTER_MUSIC_MALE,
 #line 4844
-        .items = { ITEM_HYPER_POTION, ITEM_HYPER_POTION },
+        .items = { ITEM_SUPER_POTION },
 #line 4845
         .doubleBattle = FALSE,
 #line 4846
@@ -11992,7 +11992,7 @@ F_TRAINER_FEMALE |
 #line 4850
             .iv = TRAINER_PARTY_IVS(12, 12, 12, 12, 12, 12),
 #line 4849
-            .lvl = 24,
+            .lvl = 21,
             .nature = NATURE_HARDY,
             .dynamaxLevel = MAX_DYNAMAX_LEVEL,
             .moves = {
@@ -12006,14 +12006,16 @@ F_TRAINER_FEMALE |
 #line 4855
             .species = SPECIES_MEDITITE,
             .gender = TRAINER_MON_RANDOM_GENDER,
-#line 4857
+#line 4858
             .iv = TRAINER_PARTY_IVS(12, 12, 12, 12, 12, 12),
+#line 4857
+            .ability = ABILITY_TELEPATHY,
 #line 4856
-            .lvl = 24,
+            .lvl = 21,
             .nature = NATURE_HARDY,
             .dynamaxLevel = MAX_DYNAMAX_LEVEL,
             .moves = {
-#line 4858
+#line 4859
                 MOVE_FOCUS_PUNCH,
                 MOVE_LIGHT_SCREEN,
                 MOVE_REFLECT,
@@ -12021,23 +12023,22 @@ F_TRAINER_FEMALE |
             },
             },
             {
-#line 4863
+#line 4864
             .species = SPECIES_HARIYAMA,
             .gender = TRAINER_MON_RANDOM_GENDER,
-#line 4863
-            .heldItem = ITEM_SITRUS_BERRY,
-#line 4865
-            .iv = TRAINER_PARTY_IVS(24, 24, 24, 24, 24, 24),
 #line 4864
-            .lvl = 24,
+            .heldItem = ITEM_SITRUS_BERRY,
+#line 4866
+            .iv = TRAINER_PARTY_IVS(5, 12, 10, 10, 10, 10),
+#line 4865
+            .lvl = 20,
             .nature = NATURE_HARDY,
             .dynamaxLevel = MAX_DYNAMAX_LEVEL,
             .moves = {
-#line 4866
+#line 4867
                 MOVE_BRINE,
                 MOVE_FORCE_PALM,
                 MOVE_FAKE_OUT,
-                MOVE_BULK_UP,
             },
             },
         },
