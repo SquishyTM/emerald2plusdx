@@ -100,17 +100,15 @@
       "dest_warp_id": "0"
     }
   ],
-  "coord_events": [
-
-  ],
+  "coord_events": [],
   "bg_events": [
     {
       "type": "hidden_item",
       "x": 41,
       "y": 11,
       "elevation": 3,
-      "item": "ITEM_POKE_BALL",
-      "flag": "FLAG_HIDDEN_ITEM_ROUTE_106_POKE_BALL"
+      "item": "ITEM_DUSK_BALL",
+      "flag": "FLAG_HIDDEN_ITEM_ROUTE_106_DUSK_BALL"
     },
     {
       "type": "hidden_item",

@@ -6420,7 +6420,7 @@ Class: Fisherman
 Pic: Fisherman
 Gender: Male
 Music: Hiker
-Double Battle: No
+Double Battle: Yes
 AI: Basic Trainer
 
 Tentacool
