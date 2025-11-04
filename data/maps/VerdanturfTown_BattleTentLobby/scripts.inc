@@ -1,9 +1,3 @@
-<<<<<<< HEAD
-
-.set LOCALID_ATTENDANT, 1
-
-=======
->>>>>>> acb4a9cf6266ffad7b52ae33f18cfb09c490c555
 VerdanturfTown_BattleTentLobby_MapScripts::
 	map_script MAP_SCRIPT_ON_FRAME_TABLE, VerdanturfTown_BattleTentLobby_OnFrame
 	map_script MAP_SCRIPT_ON_WARP_INTO_MAP_TABLE, VerdanturfTown_BattleTentLobby_OnWarp
