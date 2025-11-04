@@ -1,16 +1,7 @@
-<<<<<<< HEAD
-
-.set LOCALID_PLAYER, 1
-.set LOCALID_OPPONENT, 2
-.set LOCALID_ATTENDANT, 3
-.set LOCALID_DUSCLOPS, 4
-.set LOCALID_AZURILL, 5
-=======
 @ On this map the player will automatically walk into the room, but the camera is supposed to remain still.
 @ To do this GF sets the player (LOCALID_PLAYER) invisible and creates a fake player object (LOCALID_PALACE_BATTLE_PLAYER).
 @ The graphics of this fake player object are represented with VAR_OBJ_GFX_ID_1.
 @ The graphics of the opponent are represented with VAR_OBJ_GFX_ID_0, which will ultimately be set by tower_setopponent.
->>>>>>> acb4a9cf6266ffad7b52ae33f18cfb09c490c555
 
 BattleFrontier_BattlePalaceBattleRoom_MapScripts::
 	map_script MAP_SCRIPT_ON_TRANSITION, BattleFrontier_BattlePalaceBattleRoom_OnTransition
