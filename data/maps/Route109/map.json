@@ -319,10 +319,10 @@
       "y": 6,
       "elevation": 3,
       "movement_type": "MOVEMENT_TYPE_LOOK_AROUND",
-      "movement_range_x": 1,
+      "movement_range_x": 3,
       "movement_range_y": 1,
       "trainer_type": "TRAINER_TYPE_NONE",
-      "trainer_sight_or_berry_tree_id": "ITEM_POTION",
+      "trainer_sight_or_berry_tree_id": "ITEM_SUPER_POTION",
       "script": "Common_EventScript_FindItem",
       "flag": "FLAG_ITEM_ROUTE_109_POTION"
     },
@@ -349,9 +349,7 @@
       "dest_warp_id": "0"
     }
   ],
-  "coord_events": [
-
-  ],
+  "coord_events": [],
   "bg_events": [
     {
       "type": "sign",
@@ -390,8 +388,8 @@
       "x": 9,
       "y": 10,
       "elevation": 3,
-      "item": "ITEM_GREAT_BALL",
-      "flag": "FLAG_HIDDEN_ITEM_ROUTE_109_GREAT_BALL"
+      "item": "ITEM_DIVE_BALL",
+      "flag": "FLAG_HIDDEN_ITEM_ROUTE_109_DIVE_BALL"
     },
     {
       "type": "hidden_item",
