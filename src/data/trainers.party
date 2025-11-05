@@ -640,12 +640,12 @@ Music: Female
 Double Battle: No
 AI: Basic Trainer
 
-Shroomish
-Level: 14
+Gossifleur
+Level: 22
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
 Roselia
-Level: 14
+Level: 22
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
 === TRAINER_ROSE_1 ===
@@ -5538,8 +5538,8 @@ Music: Twins
 Double Battle: No
 AI: Basic Trainer
 
-Skitty @ Oran Berry
-Level: 15
+Delcatty @ Sitrus Berry
+Level: 25
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
 === TRAINER_COLTON ===
@@ -5608,7 +5608,7 @@ Music: Twins
 Double Battle: No
 AI: Basic Trainer
 
-Skitty @ Oran Berry
+Delcatty @ Sitrus Berry
 Level: 29
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
@@ -5621,7 +5621,7 @@ Music: Twins
 Double Battle: No
 AI: Basic Trainer
 
-Skitty @ Oran Berry
+Delcatty @ Sitrus Berry
 Level: 32
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
@@ -5634,7 +5634,7 @@ Music: Twins
 Double Battle: No
 AI: Basic Trainer
 
-Delcatty @ Oran Berry
+Delcatty @ Sitrus Berry
 Level: 35
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
@@ -6349,15 +6349,15 @@ Double Battle: No
 AI: Basic Trainer
 
 Magikarp
-Level: 5
+Level: 25
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
-Tentacool
-Level: 10
+Finneon
+Level: 23
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
 Magikarp
-Level: 15
+Level: 25
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
 === TRAINER_IVAN ===
@@ -8822,12 +8822,14 @@ Double Battle: Yes
 AI: Basic Trainer
 
 Plusle
-Level: 15
+Level: 25
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
+Shiny: Yes
 
 Minun
-Level: 15
+Level: 25
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
+Shiny: Yes
 
 === TRAINER_AMY_AND_LIV_2 ===
 Name: AMY & LIV
@@ -8841,10 +8843,12 @@ AI: Basic Trainer
 Plusle
 Level: 27
 IVs: 1 HP / 1 Atk / 1 Def / 1 SpA / 1 SpD / 1 Spe
+Shiny: Yes
 
 Minun
 Level: 27
 IVs: 1 HP / 1 Atk / 1 Def / 1 SpA / 1 SpD / 1 Spe
+Shiny: Yes
 
 === TRAINER_GINA_AND_MIA_1 ===
 Name: GINA & MIA
@@ -8892,10 +8896,12 @@ AI: Basic Trainer
 Plusle
 Level: 9
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
+Shiny: Yes
 
 Minun
 Level: 9
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
+Shiny: Yes
 
 === TRAINER_GINA_AND_MIA_2 ===
 Name: GINA & MIA
@@ -8930,10 +8936,12 @@ AI: Basic Trainer
 Plusle
 Level: 30
 IVs: 2 HP / 2 Atk / 2 Def / 2 SpA / 2 SpD / 2 Spe
+Shiny: Yes
 
 Minun
 Level: 30
 IVs: 2 HP / 2 Atk / 2 Def / 2 SpA / 2 SpD / 2 Spe
+Shiny: Yes
 
 === TRAINER_AMY_AND_LIV_5 ===
 Name: AMY & LIV
@@ -8947,6 +8955,7 @@ AI: Basic Trainer
 Plusle
 Level: 33
 IVs: 3 HP / 3 Atk / 3 Def / 3 SpA / 3 SpD / 3 Spe
+Shiny: Yes
 - Spark
 - Charge
 - Fake Tears
@@ -8955,6 +8964,7 @@ IVs: 3 HP / 3 Atk / 3 Def / 3 SpA / 3 SpD / 3 Spe
 Minun
 Level: 33
 IVs: 3 HP / 3 Atk / 3 Def / 3 SpA / 3 SpD / 3 Spe
+Shiny: Yes
 - Spark
 - Charge
 - Charm
@@ -8972,6 +8982,7 @@ AI: Basic Trainer
 Plusle
 Level: 36
 IVs: 4 HP / 4 Atk / 4 Def / 4 SpA / 4 SpD / 4 Spe
+Shiny: Yes
 - Thunder
 - Charge
 - Fake Tears
@@ -8980,6 +8991,7 @@ IVs: 4 HP / 4 Atk / 4 Def / 4 SpA / 4 SpD / 4 Spe
 Minun
 Level: 36
 IVs: 4 HP / 4 Atk / 4 Def / 4 SpA / 4 SpD / 4 Spe
+Shiny: Yes
 - Thunder
 - Charge
 - Charm
@@ -9572,18 +9584,18 @@ Pic: Brendan
 Gender: Male
 Music: Male
 Double Battle: No
-AI: Basic Trainer
+AI: Smart Trainer
 
-Slugma
-Level: 18
+Lairon
+Level: 25
 IVs: 6 HP / 6 Atk / 6 Def / 6 SpA / 6 SpD / 6 Spe
 
-Wingull
-Level: 18
+Zangoose
+Level: 25
 IVs: 6 HP / 6 Atk / 6 Def / 6 SpA / 6 SpD / 6 Spe
 
 Grovyle
-Level: 20
+Level: 26
 IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
 
 === TRAINER_BRENDAN_ROUTE_119_MUDKIP ===
@@ -9629,18 +9641,18 @@ Pic: Brendan
 Gender: Male
 Music: Male
 Double Battle: No
-AI: Basic Trainer
+AI: Smart Trainer
 
-Wingull
-Level: 18
+Zangoose
+Level: 25
 IVs: 6 HP / 6 Atk / 6 Def / 6 SpA / 6 SpD / 6 Spe
 
-Lombre
-Level: 18
+Masquerain
+Level: 25
 IVs: 6 HP / 6 Atk / 6 Def / 6 SpA / 6 SpD / 6 Spe
 
 Combusken
-Level: 20
+Level: 26
 IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
 
 === TRAINER_BRENDAN_ROUTE_119_TREECKO ===
@@ -9686,18 +9698,18 @@ Pic: Brendan
 Gender: Male
 Music: Male
 Double Battle: No
-AI: Basic Trainer
+AI: Smart Trainer
 
-Lombre
-Level: 18
+Masquerain
+Level: 25
 IVs: 6 HP / 6 Atk / 6 Def / 6 SpA / 6 SpD / 6 Spe
 
-Slugma
-Level: 18
+Lairon
+Level: 25
 IVs: 6 HP / 6 Atk / 6 Def / 6 SpA / 6 SpD / 6 Spe
 
 Marshtomp
-Level: 20
+Level: 26
 IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
 
 === TRAINER_BRENDAN_ROUTE_119_TORCHIC ===
@@ -9743,18 +9755,18 @@ Pic: May
 Gender: Female
 Music: Female
 Double Battle: No
-AI: Basic Trainer
+AI: Smart Trainer
 
-Wingull
-Level: 18
+Seviper
+Level: 25
 IVs: 6 HP / 6 Atk / 6 Def / 6 SpA / 6 SpD / 6 Spe
 
-Slugma
-Level: 18
+Lairon
+Level: 25
 IVs: 6 HP / 6 Atk / 6 Def / 6 SpA / 6 SpD / 6 Spe
 
 Grovyle
-Level: 20
+Level: 26
 IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
 
 === TRAINER_MAY_ROUTE_119_MUDKIP ===
@@ -9800,18 +9812,18 @@ Pic: May
 Gender: Female
 Music: Female
 Double Battle: No
-AI: Basic Trainer
+AI: Smart Trainer
 
-Wingull
-Level: 18
+Seviper
+Level: 25
 IVs: 6 HP / 6 Atk / 6 Def / 6 SpA / 6 SpD / 6 Spe
 
-Lombre
-Level: 18
+Masquerain
+Level: 25
 IVs: 6 HP / 6 Atk / 6 Def / 6 SpA / 6 SpD / 6 Spe
 
 Combusken
-Level: 20
+Level: 26
 IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
 
 === TRAINER_MAY_ROUTE_119_TREECKO ===
@@ -9857,18 +9869,18 @@ Pic: May
 Gender: Female
 Music: Female
 Double Battle: No
-AI: Basic Trainer
+AI: Smart Trainer
 
-Lombre
-Level: 18
+Masquerain
+Level: 25
 IVs: 6 HP / 6 Atk / 6 Def / 6 SpA / 6 SpD / 6 Spe
 
-Slugma
-Level: 18
+Lairon
+Level: 25
 IVs: 6 HP / 6 Atk / 6 Def / 6 SpA / 6 SpD / 6 Spe
 
 Marshtomp
-Level: 20
+Level: 26
 IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
 
 === TRAINER_MAY_ROUTE_119_TORCHIC ===
@@ -13150,7 +13162,7 @@ Double Battle: No
 AI: Basic Trainer
 
 Voltorb
-Level: 15
+Level: 22
 IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
 
 === TRAINER_RHETT ===
@@ -13162,8 +13174,8 @@ Music: Intense
 Double Battle: No
 AI: Basic Trainer
 
-Makuhita
-Level: 15
+Riolu
+Level: 22
 IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
 
 === TRAINER_TYRON ===
