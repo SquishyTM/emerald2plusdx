@@ -544,6 +544,8 @@ LittlerootTown_ProfessorBirchsLab_EventScript_ReceivePokedex::
 	message LittlerootTown_ProfessorBirchsLab_Text_ReceivedPokedex
 	waitfanfare
 	setflag FLAG_SYS_POKEDEX_GET
+	message LittlerootTown_ProfessorBirchsLab_Text_ReceivedDexNav
+	setflag FLAG_DEXNAV_GET
 	special SetUnlockedPokedexFlags
 	setflag FLAG_RECEIVED_POKEDEX_FROM_BIRCH
 	setvar VAR_CABLE_CLUB_TUTORIAL_STATE, 1
@@ -992,3 +994,6 @@ LittlerootTown_ProfessorBirchsLab_Text_ScottAboardSSTidalCall:
 	.string "we meet. I'll be waiting!\p"
 	.string "… … … … … …\n"
 	.string "… … … … … Click!$"
+
+LittlerootTown_ProfessorBirchsLab_Text_ReceivedDexNav:
+	.string "{PLAYER} received the DexNav!$"
