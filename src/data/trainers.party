@@ -3381,20 +3381,21 @@ Music: Intense
 Double Battle: No
 AI: Basic Trainer
 
-Electrike
-Level: 17
+Manectric
+Level: 27
 IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
 - Quick Attack
 - Thunder Wave
 - Spark
-- Leer
+- Roar
 
 Voltorb
-Level: 17
-IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
+Level: 27
+IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 0 Spe
 - Charge
 - Shock Wave
 - Screech
+- Rollout
 
 === TRAINER_GRUNT_AQUA_HIDEOUT_7 ===
 Name: GRUNT
@@ -3435,12 +3436,12 @@ Music: Intense
 Double Battle: No
 AI: Basic Trainer
 
-Voltorb
-Level: 17
+Kilowattrel
+Level: 26
 IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
 
-Magnemite
-Level: 17
+Stunfisk
+Level: 27
 IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
 
 === TRAINER_FERNANDO_1 ===
@@ -4884,41 +4885,41 @@ Class: Leader
 Pic: Leader Wattson
 Gender: Male
 Music: Male
-Items: Super Potion / Super Potion
+Items: Hyper Potion / Hyper Potion
 Double Battle: No
-AI: Basic Trainer
+AI: Smart Trainer / Ace Pokemon
 
-Voltorb
-Level: 20
+Togedemaru
+Level: 29
 IVs: 24 HP / 24 Atk / 24 Def / 24 SpA / 24 SpD / 24 Spe
-- Rollout
+- Pin Missile
 - Spark
-- Self Destruct
-- Shock Wave
+- Magnet Rise
+- Nuzzle
 
-Electrike
-Level: 20
+Lanturn
+Level: 29
 IVs: 24 HP / 24 Atk / 24 Def / 24 SpA / 24 SpD / 24 Spe
-- Shock Wave
-- Leer
-- Quick Attack
-- Howl
+- Water Pulse
+- Charge Beam
+- Icy Wind
 
 Magneton
-Level: 22
+Level: 29
 IVs: 26 HP / 26 Atk / 26 Def / 26 SpA / 26 SpD / 26 Spe
-- Supersonic
+- Gyro Ball
 - Shock Wave
 - Thunder Wave
-- Sonic Boom
+- Tri Attack
 
 Manectric @ Sitrus Berry
-Level: 24
+Level: 31
+Shiny: Yes
 IVs: 30 HP / 30 Atk / 30 Def / 30 SpA / 30 SpD / 30 Spe
-- Quick Attack
-- Thunder Wave
+- Charge
+- Ice Fang
 - Shock Wave
-- Howl
+- Fire Fang
 
 === TRAINER_FLANNERY_1 ===
 Name: FLANNERY
@@ -6063,21 +6064,20 @@ Music: Male
 Double Battle: No
 AI: Basic Trainer
 
-Zigzagoon
-Level: 17
+Emolga
+Level: 25
 IVs: 18 HP / 18 Atk / 18 Def / 18 SpA / 18 SpD / 18 Spe
-- Headbutt
-- Sand Attack
-- Growl
+- Gust
+- Agility
 - Thunderbolt
 
-Gulpin
-Level: 17
+Morpeko
+Level: 25
 IVs: 18 HP / 18 Atk / 18 Def / 18 SpA / 18 SpD / 18 Spe
-- Amnesia
-- Sludge
-- Yawn
-- Pound
+- Aura Wheel
+- Protect
+- Flatter
+- Ice Fang
 
 === TRAINER_QUINCY ===
 Name: QUINCY
@@ -11979,21 +11979,21 @@ Music: Intense
 Double Battle: No
 AI: Basic Trainer
 
-Meditite
-Level: 17
+Pawmot
+Level: 27
 IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
-- Bide
-- Detect
-- Confusion
-- Thunder Punch
+- Spark
+- Arm Thrust
+- Bite
+- Thunder Wave
 
-Meditite
-Level: 17
+Eelektrik @ Chesto Berry
+Level: 27
 IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
-- Thunder Punch
-- Detect
-- Confusion
-- Meditate
+- Thunder Fang
+- Headbutt
+- Rest
+- Electric Terrain
 
 === TRAINER_DANIELLE ===
 Name: DANIELLE
@@ -12134,8 +12134,17 @@ Music: Male
 Double Battle: No
 AI: Basic Trainer
 
-Ralts
-Level: 16
+Kirlia
+Level: 22
+Shiny: Yes
+IVs: 3 HP / 3 Atk / 3 Def / 3 SpA / 3 SpD / 3 Spe
+
+Swablu
+Level: 22
+IVs: 3 HP / 3 Atk / 3 Def / 3 SpA / 3 SpD / 3 Spe
+
+Clefairy
+Level: 22
 IVs: 3 HP / 3 Atk / 3 Def / 3 SpA / 3 SpD / 3 Spe
 
 === TRAINER_WALLY_VR_2 ===
@@ -15922,18 +15931,20 @@ Double Battle: No
 AI: Basic Trainer
 
 Illumise
-Level: 17
+Level: 27
 IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
 - Shock Wave
 - Quick Attack
 - Charm
+- Struggle Bug
 
 Volbeat
-Level: 17
+Level: 27
 IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
 - Shock Wave
 - Quick Attack
 - Confuse Ray
+- Struggle Bug
 
 === TRAINER_DARIUS ===
 Name: DARIUS
