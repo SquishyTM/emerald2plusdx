@@ -2919,6 +2919,9 @@ static void SetPartyMonFieldSelectionActions(struct Pokemon *mons, u8 slotId)
     u16 species = GetMonData(&mons[slotId], MON_DATA_SPECIES_OR_EGG);
     for (i = 0; i < FIELD_MOVES_COUNT; i++)
     {
+        if (fieldMoveCount >= 4)
+            break;
+
         enum FieldMove fieldMove = GetFieldMoveByPriority(i);
 
         if ((knownFieldMoves & 1 << fieldMove) != 0)
@@ -2927,9 +2930,8 @@ static void SetPartyMonFieldSelectionActions(struct Pokemon *mons, u8 slotId)
         u16 moveSource = GetFieldMoveSourceItem(fieldMove);
         if ((moveSource == ITEM_NONE || CheckBagHasItem(moveSource, 1)) && CanLearnTeachableMove(species, FieldMove_GetMoveId(fieldMove)))
         {
+            fieldMoveCount++;
             AppendToList(sPartyMenuInternal->actions, &sPartyMenuInternal->numActions, fieldMove + MENU_FIELD_MOVES);
-            if (++fieldMoveCount >= 4)
-                break;
         }
     }
 
