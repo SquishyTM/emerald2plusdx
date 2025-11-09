@@ -391,15 +391,15 @@ Class: Team Aqua
 Pic: Aqua Grunt M
 Gender: Male
 Music: Aqua
-Double Battle: No
+Double Battle: Yes
 AI: Basic Trainer
 
 Carvanha
-Level: 25
+Level: 26
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
 Basculin
-Level: 25
+Level: 26
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
 === TRAINER_GRUNT_MUSEUM_2 ===
@@ -408,15 +408,15 @@ Class: Team Aqua
 Pic: Aqua Grunt M
 Gender: Male
 Music: Aqua
-Double Battle: No
+Double Battle: Yes
 AI: Basic Trainer
 
 Binacle
-Level: 24
+Level: 26
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
 Carvanha
-Level: 24
+Level: 26
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
 === TRAINER_GRUNT_SPACE_CENTER_1 ===
@@ -3382,7 +3382,7 @@ Double Battle: No
 AI: Basic Trainer
 
 Manectric
-Level: 27
+Level: 28
 IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
 - Quick Attack
 - Thunder Wave
@@ -3390,7 +3390,7 @@ IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
 - Roar
 
 Voltorb
-Level: 27
+Level: 28
 IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 0 Spe
 - Charge
 - Shock Wave
@@ -3437,7 +3437,7 @@ Double Battle: No
 AI: Basic Trainer
 
 Kilowattrel
-Level: 26
+Level: 27
 IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
 
 Stunfisk
@@ -4905,7 +4905,7 @@ IVs: 24 HP / 24 Atk / 24 Def / 24 SpA / 24 SpD / 24 Spe
 - Icy Wind
 
 Magneton
-Level: 29
+Level: 30
 IVs: 26 HP / 26 Atk / 26 Def / 26 SpA / 26 SpD / 26 Spe
 - Gyro Ball
 - Shock Wave
@@ -4913,7 +4913,7 @@ IVs: 26 HP / 26 Atk / 26 Def / 26 SpA / 26 SpD / 26 Spe
 - Tri Attack
 
 Manectric @ Sitrus Berry
-Level: 31
+Level: 32
 Shiny: Yes
 IVs: 30 HP / 30 Atk / 30 Def / 30 SpA / 30 SpD / 30 Spe
 - Charge
@@ -5711,10 +5711,18 @@ AI: Basic Trainer
 Plusle @ Sitrus Berry
 Level: 24
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
+- Helping Hand
+- Nuzzle
+- Encore
+- Growl
 
 Minun @ Sitrus Berry
 Level: 24
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
+- Helping Hand
+- Swift
+- Quick Attack
+- Growl
 
 === TRAINER_ISABEL_2 ===
 Name: ISABEL
@@ -6065,14 +6073,14 @@ Double Battle: No
 AI: Basic Trainer
 
 Emolga
-Level: 25
+Level: 26
 IVs: 18 HP / 18 Atk / 18 Def / 18 SpA / 18 SpD / 18 Spe
-- Gust
+- Acrobatics
 - Agility
 - Thunderbolt
 
 Morpeko
-Level: 25
+Level: 27
 IVs: 18 HP / 18 Atk / 18 Def / 18 SpA / 18 SpD / 18 Spe
 - Aura Wheel
 - Protect
@@ -8825,11 +8833,19 @@ Plusle
 Level: 25
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 Shiny: Yes
+- Spark
+- Swift
+- Encore
+- Quick Attack
 
 Minun
 Level: 25
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 Shiny: Yes
+- Spark
+- Swift
+- Thunder Wave
+- Quick Attack
 
 === TRAINER_AMY_AND_LIV_2 ===
 Name: AMY & LIV
@@ -9644,15 +9660,19 @@ Double Battle: No
 AI: Smart Trainer
 
 Zangoose
-Level: 25
+Level: 27
 IVs: 6 HP / 6 Atk / 6 Def / 6 SpA / 6 SpD / 6 Spe
 
 Masquerain
-Level: 25
+Level: 27
 IVs: 6 HP / 6 Atk / 6 Def / 6 SpA / 6 SpD / 6 Spe
+- Air Cutter
+- Stun Spore
+- Scary Face
+- Water Pulse
 
 Combusken
-Level: 26
+Level: 27
 IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
 
 === TRAINER_BRENDAN_ROUTE_119_TREECKO ===
@@ -9701,15 +9721,19 @@ Double Battle: No
 AI: Smart Trainer
 
 Masquerain
-Level: 25
+Level: 27
 IVs: 6 HP / 6 Atk / 6 Def / 6 SpA / 6 SpD / 6 Spe
+- Air Cutter
+- Stun Spore
+- Scary Face
+- Water Pulse
 
 Lairon
-Level: 25
+Level: 27
 IVs: 6 HP / 6 Atk / 6 Def / 6 SpA / 6 SpD / 6 Spe
 
 Marshtomp
-Level: 26
+Level: 27
 IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
 
 === TRAINER_BRENDAN_ROUTE_119_TORCHIC ===
@@ -9815,15 +9839,19 @@ Double Battle: No
 AI: Smart Trainer
 
 Seviper
-Level: 25
+Level: 27
 IVs: 6 HP / 6 Atk / 6 Def / 6 SpA / 6 SpD / 6 Spe
 
 Masquerain
-Level: 25
+Level: 27
 IVs: 6 HP / 6 Atk / 6 Def / 6 SpA / 6 SpD / 6 Spe
+- Air Cutter
+- Stun Spore
+- Scary Face
+- Water Pulse
 
 Combusken
-Level: 26
+Level: 27
 IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
 
 === TRAINER_MAY_ROUTE_119_TREECKO ===
@@ -9872,15 +9900,19 @@ Double Battle: No
 AI: Smart Trainer
 
 Masquerain
-Level: 25
+Level: 27
 IVs: 6 HP / 6 Atk / 6 Def / 6 SpA / 6 SpD / 6 Spe
+- Air Cutter
+- Stun Spore
+- Scary Face
+- Water Pulse
 
 Lairon
-Level: 25
+Level: 27
 IVs: 6 HP / 6 Atk / 6 Def / 6 SpA / 6 SpD / 6 Spe
 
 Marshtomp
-Level: 26
+Level: 27
 IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
 
 === TRAINER_MAY_ROUTE_119_TORCHIC ===
@@ -11980,7 +12012,7 @@ Double Battle: No
 AI: Basic Trainer
 
 Pawmot
-Level: 27
+Level: 28
 IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
 - Spark
 - Arm Thrust
@@ -11988,7 +12020,7 @@ IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
 - Thunder Wave
 
 Eelektrik @ Chesto Berry
-Level: 27
+Level: 28
 IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
 - Thunder Fang
 - Headbutt
@@ -13126,10 +13158,18 @@ AI: Basic Trainer
 Minun @ Sitrus Berry
 Level: 24
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
+- Spark
+- Swift
+- Encore
+- Quick Attack
 
 Plusle @ Sitrus Berry
 Level: 24
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
+- Spark
+- Swift
+- Encore
+- Quick Attack
 
 === TRAINER_JOSEPH ===
 Name: JOSEPH
@@ -15931,7 +15971,7 @@ Double Battle: No
 AI: Basic Trainer
 
 Illumise
-Level: 27
+Level: 28
 IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
 - Shock Wave
 - Quick Attack
@@ -15939,7 +15979,7 @@ IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
 - Struggle Bug
 
 Volbeat
-Level: 27
+Level: 28
 IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
 - Shock Wave
 - Quick Attack
