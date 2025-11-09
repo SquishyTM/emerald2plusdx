@@ -2835,9 +2835,68 @@ static void SetPartyMonSelectionActions(struct Pokemon *mons, u8 slotId, u8 acti
     }
 }
 
+static enum FieldMove GetFieldMoveByPriority(u8 priority)
+{
+    static const enum FieldMove fieldMovesByPriority[] = {
+        FIELD_MOVE_FLY,
+        FIELD_MOVE_FLASH,
+#if OW_DEFOG_FIELD_MOVE == TRUE
+        FIELD_MOVE_DEFOG,
+#endif
+        FIELD_MOVE_MILK_DRINK,
+        FIELD_MOVE_SOFT_BOILED,
+        FIELD_MOVE_TELEPORT,
+        FIELD_MOVE_DIG,
+        FIELD_MOVE_SWEET_SCENT,
+        FIELD_MOVE_CUT,
+        FIELD_MOVE_ROCK_SMASH,
+        FIELD_MOVE_STRENGTH,
+        FIELD_MOVE_SURF,
+        FIELD_MOVE_DIVE,
+        FIELD_MOVE_WATERFALL,
+#if OW_ROCK_CLIMB_FIELD_MOVE == TRUE
+        FIELD_MOVE_ROCK_CLIMB,
+#endif
+        FIELD_MOVE_SECRET_POWER
+    };
+
+    return fieldMovesByPriority[priority];
+}
+
+static u16 GetFieldMoveSourceItem(enum FieldMove fieldMove)
+{
+    switch (fieldMove)
+    {
+        case FIELD_MOVE_CUT:
+            return ITEM_HM01;
+        case FIELD_MOVE_FLASH:
+            return ITEM_HM05;
+        case FIELD_MOVE_ROCK_SMASH:
+            return ITEM_HM06;
+        case FIELD_MOVE_STRENGTH:
+            return ITEM_HM04;
+        case FIELD_MOVE_SURF:
+            return ITEM_HM03;
+        case FIELD_MOVE_FLY:
+            return ITEM_HM02;
+        case FIELD_MOVE_DIVE:
+            return ITEM_HM08;
+        case FIELD_MOVE_WATERFALL:
+            return ITEM_HM07;
+        case FIELD_MOVE_DIG:
+            return ITEM_TM28;
+        case FIELD_MOVE_SECRET_POWER:
+            return ITEM_TM43;
+        default:
+            return ITEM_NONE;
+    }
+}
+
 static void SetPartyMonFieldSelectionActions(struct Pokemon *mons, u8 slotId)
 {
     u8 i, j;
+    u16 knownFieldMoves = 0;
+    u8 fieldMoveCount = 0;
 
     sPartyMenuInternal->numActions = 0;
     AppendToList(sPartyMenuInternal->actions, &sPartyMenuInternal->numActions, MENU_SUMMARY);
@@ -2849,9 +2908,28 @@ static void SetPartyMonFieldSelectionActions(struct Pokemon *mons, u8 slotId)
         {
             if (GetMonData(&mons[slotId], i + MON_DATA_MOVE1) == FieldMove_GetMoveId(j))
             {
+                knownFieldMoves |= 1 << j;
+                fieldMoveCount++;
                 AppendToList(sPartyMenuInternal->actions, &sPartyMenuInternal->numActions, j + MENU_FIELD_MOVES);
                 break;
             }
+        }
+    }
+
+    u16 species = GetMonData(&mons[slotId], MON_DATA_SPECIES_OR_EGG);
+    for (i = 0; i < FIELD_MOVES_COUNT; i++)
+    {
+        enum FieldMove fieldMove = GetFieldMoveByPriority(i);
+
+        if ((knownFieldMoves & 1 << fieldMove) != 0)
+            continue;
+
+        u16 moveSource = GetFieldMoveSourceItem(fieldMove);
+        if ((moveSource == ITEM_NONE || CheckBagHasItem(moveSource, 1)) && CanLearnTeachableMove(species, FieldMove_GetMoveId(fieldMove)))
+        {
+            AppendToList(sPartyMenuInternal->actions, &sPartyMenuInternal->numActions, fieldMove + MENU_FIELD_MOVES);
+            if (++fieldMoveCount >= 4)
+                break;
         }
     }
 
