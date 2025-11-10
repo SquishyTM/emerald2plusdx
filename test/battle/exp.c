@@ -1,5 +1,6 @@
 #include "global.h"
 #include "test/battle.h"
+#include "caps.h"
 
 #if B_EXP_CATCH >= GEN_6
 
