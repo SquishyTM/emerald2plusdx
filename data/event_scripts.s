@@ -1162,3 +1162,5 @@ EventScript_VsSeekerChargingDone::
 	.include "data/maps/LittlerootTown_DXHouse2/scripts.inc"
 
 	.include "data/maps/RusturfRuins/scripts.inc"
+
+	.include "data/maps/UndergroundPassage_Area1/scripts.inc"

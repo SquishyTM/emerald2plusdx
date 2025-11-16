@@ -4440,6 +4440,16 @@
       "secondary_tileset": "gTileset_RusturfTunnel",
       "border_filepath": "data/layouts/RusturfRuins/border.bin",
       "blockdata_filepath": "data/layouts/RusturfRuins/map.bin"
+    },
+    {
+      "id": "LAYOUT_UNDERGROUND_PASSAGE_AREA1",
+      "name": "UndergroundPassage_Area1_Layout",
+      "width": 9,
+      "height": 30,
+      "primary_tileset": "gTileset_General",
+      "secondary_tileset": "gTileset_Cave",
+      "border_filepath": "data/layouts/UndergroundPassage_Area1/border.bin",
+      "blockdata_filepath": "data/layouts/UndergroundPassage_Area1/map.bin"
     }
   ]
 }
