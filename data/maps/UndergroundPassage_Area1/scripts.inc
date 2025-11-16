@@ -14,6 +14,7 @@ UndergroundPassage_Area1_EventScript_BattleDusclops::
 	waitstate
 	delay 40 
 	giveitem ITEM_SPELL_TAG
+	waitse
 	setflag FLAG_DEFEATED_DUSCLOPS
 	clearflag FLAG_SYS_CTRL_OBJ_DELETE
 	specialvar VAR_RESULT, GetBattleOutcome
