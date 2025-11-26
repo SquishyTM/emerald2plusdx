@@ -15,7 +15,7 @@
   "connections": null,
   "object_events": [
     {
-      "graphics_id": "OBJ_EVENT_GFX_DUSCLOPS",
+      "graphics_id": "OBJ_EVENT_GFX_SPECIES(REGIDRAGO)",
       "x": 4,
       "y": 2,
       "elevation": 0,
@@ -24,8 +24,8 @@
       "movement_range_y": 0,
       "trainer_type": "TRAINER_TYPE_NONE",
       "trainer_sight_or_berry_tree_id": "0",
-      "script": "UndergroundPassage_Area1_EventScript_BattleDusclops",
-      "flag": "FLAG_DEFEATED_DUSCLOPS"
+      "script": "UndergroundPassage_Area1_EventScript_BattleRegidrago",
+      "flag": "FLAG_DEFEATED_REGIDRAGO"
     }
   ],
   "warp_events": [

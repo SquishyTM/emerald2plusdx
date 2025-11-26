@@ -1,32 +1,34 @@
 UndergroundPassage_Area1_MapScripts::
 	.byte 0
 
-UndergroundPassage_Area1_EventScript_BattleDusclops::
+UndergroundPassage_Area1_EventScript_BattleRegidrago::
 	lockall
 	faceplayer
-	playmoncry SPECIES_DUSCLOPS, CRY_MODE_ENCOUNTER
-	msgbox UndergroundPassage_Area1_TextDusclops, MSGBOX_DEFAULT
-	closemessage
+	playmoncry SPECIES_REGIDRAGO, CRY_MODE_ENCOUNTER
+	msgbox UndergroundPassage_Area1_TextRegidrago, MSGBOX_DEFAULT
 	waitmoncry
-	setwildbattle SPECIES_DUSCLOPS, 45
+	closemessage
+	setwildbattle SPECIES_REGIDRAGO, 55
 	setflag FLAG_SYS_CTRL_OBJ_DELETE
-	special BattleSetup_StartLegendaryBattle
+	setflag B_FLAG_NO_CATCHING
+	special StartRegiBattle
 	waitstate
-	delay 40 
-	giveitem ITEM_SPELL_TAG
+	delay 40
+	giveitem ITEM_EJECT_BUTTON
 	waitse
-	setflag FLAG_DEFEATED_DUSCLOPS
+	setflag FLAG_DEFEATED_REGIDRAGO
 	clearflag FLAG_SYS_CTRL_OBJ_DELETE
+	clearflag B_FLAG_NO_CATCHING
 	specialvar VAR_RESULT, GetBattleOutcome
-	goto_if_eq VAR_RESULT, B_OUTCOME_WON, EventScript_RemoveDusclops
-	goto_if_eq VAR_RESULT, B_OUTCOME_RAN, EventScript_RemoveDusclops
-	goto_if_eq VAR_RESULT, B_OUTCOME_PLAYER_TELEPORTED, EventScript_RemoveDusclops
+	goto_if_eq VAR_RESULT, B_OUTCOME_WON, EventScript_RemoveRegidrago
+	goto_if_eq VAR_RESULT, B_OUTCOME_RAN, EventScript_RemoveRegidrago
+	goto_if_eq VAR_RESULT, B_OUTCOME_PLAYER_TELEPORTED, EventScript_RemoveRegidrago
 	release
 	end
 
-EventScript_RemoveDusclops::
+EventScript_RemoveRegidrago::
 	goto Common_EventScript_RemoveStaticPokemon
 	end
 
-UndergroundPassage_Area1_TextDusclops::
+UndergroundPassage_Area1_TextRegidrago::
 	.string "Hsssah!$"

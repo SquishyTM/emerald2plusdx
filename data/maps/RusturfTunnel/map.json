@@ -173,8 +173,8 @@
       "dest_warp_id": "2"
     },
     {
-      "x": 7,
-      "y": 1,
+      "x": 29,
+      "y": 2,
       "elevation": 0,
       "dest_map": "MAP_RUSTURF_RUINS",
       "dest_warp_id": "0"

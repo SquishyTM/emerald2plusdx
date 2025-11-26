@@ -90,7 +90,7 @@
 #define FLAG_UNUSED_0x04C     0x4C // Unused Flag
 #define FLAG_UNUSED_0x04D     0x4D // Unused Flag
 #define FLAG_UNUSED_0x04E     0x4E // Unused Flag
-#define FLAG_UNUSED_0x04F     0x4F // Unused Flag
+#define B_FLAG_NO_CATCHING    0x4F // Unused Flag
 
 // Scripts
 #define FLAG_HIDE_SKY_PILLAR_TOP_RAYQUAZA_STILL  0x50
@@ -516,7 +516,7 @@
 #define FLAG_DEFEATED_HO_OH                  0x1DC
 #define FLAG_DEFEATED_LUGIA                  0x1DD
 
-#define FLAG_DEFEATED_DUSCLOPS               0x1DE // Dusclops Battle in Underground Passage 1
+#define FLAG_DEFEATED_REGIDRAGO              0x1DE // Regidrago Battle in Underground Passage 1
 #define FLAG_UNUSED_0x1DF                    0x1DF // Unused Flag
 #define FLAG_UNUSED_0x1E0                    0x1E0 // Unused Flag
 #define FLAG_UNUSED_0x1E1                    0x1E1 // Unused Flag
