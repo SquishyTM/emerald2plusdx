@@ -13,8 +13,8 @@ RusturfTunnel_OnTransition:
 	end
 
 RusturfTunnel_EventScript_SetAquaGruntAndPeekoPos::
-	setobjectxyperm LOCALID_RUSTURF_TUNNEL_PEEKO, 13, 4
-	setobjectxyperm LOCALID_RUSTURF_TUNNEL_GRUNT, 13, 5
+	setobjectxyperm LOCALID_RUSTURF_TUNNEL_PEEKO, 14, 5
+	setobjectxyperm LOCALID_RUSTURF_TUNNEL_GRUNT, 14, 6
 	return
 
 RusturfTunnel_EventScript_Wanda::

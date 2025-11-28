@@ -351,10 +351,11 @@ RivalsHouse_2F_Text_BrendanWhoAreYou:
 	.string "Huh? Hey, {PLAYER}, don't you have\n"
 	.string "a POKéMON?\p"
 	.string "Do you want me to go catch you one?\p"
+	.string "I know you girls struggle with that...\p"
 	.string "Aw, darn, I forgot…\p"
 	.string "I'm supposed to go help my dad catch\n"
 	.string "some wild POKéMON.\p"
-	.string "Some other time, okay?$"
+	.string "Some other time, okay babe?$"
 
 RivalsHouse_2F_Text_BrendanGettingReady:
 	.string "POKéMON fully restored…\n"
