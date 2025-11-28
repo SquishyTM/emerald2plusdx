@@ -4915,7 +4915,7 @@ Double Battle: No
 AI: Smart Trainer / Ace Pokemon
 
 Togedemaru
-Level: 29
+Level: 31
 IVs: 24 HP / 24 Atk / 24 Def / 24 SpA / 24 SpD / 24 Spe
 - Pin Missile
 - Spark
@@ -4923,14 +4923,14 @@ IVs: 24 HP / 24 Atk / 24 Def / 24 SpA / 24 SpD / 24 Spe
 - Nuzzle
 
 Lanturn
-Level: 29
+Level: 31
 IVs: 24 HP / 24 Atk / 24 Def / 24 SpA / 24 SpD / 24 Spe
 - Water Pulse
 - Charge Beam
 - Icy Wind
 
 Magneton
-Level: 30
+Level: 31
 IVs: 26 HP / 26 Atk / 26 Def / 26 SpA / 26 SpD / 26 Spe
 - Gyro Ball
 - Shock Wave
@@ -4938,7 +4938,7 @@ IVs: 26 HP / 26 Atk / 26 Def / 26 SpA / 26 SpD / 26 Spe
 - Tri Attack
 
 Manectric @ Sitrus Berry
-Level: 32
+Level: 33
 Shiny: Yes
 IVs: 30 HP / 30 Atk / 30 Def / 30 SpA / 30 SpD / 30 Spe
 - Charge
@@ -7934,7 +7934,7 @@ AI: Basic Trainer
 
 Hitmonchan @ Toxic Orb
 Ability: Inner Focus
-Level: 23
+Level: 22
 IVs: 5 HP / 5 Atk / 5 Def / 5 SpA / 5 SpD / 5 Spe
 - Fire Punch
 - Thunder Punch
