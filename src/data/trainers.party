@@ -3775,9 +3775,13 @@ Music: Male
 Double Battle: No
 AI: Basic Trainer
 
-Nuzleaf
-Level: 18
-IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
+Ludicolo @ Big Root
+Level: 35
+IVs: 15 HP / 15 Atk / 15 Def / 15 SpA / 15 SpD / 15 Spe
+- Rain Dance
+- Hydro Pump
+- Ice Beam
+- Giga Drain
 
 === TRAINER_SHANE ===
 Name: SHANE
@@ -3845,12 +3849,24 @@ Class: Camper
 Pic: Camper
 Gender: Male
 Music: Male
-Double Battle: No
+Double Battle: Yes
 AI: Basic Trainer
 
-Sandshrew
-Level: 18
-IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
+Sandslash-Alola
+Level: 35
+IVs: 15 HP / 15 Atk / 15 Def / 15 SpA / 15 SpD / 15 Spe
+- Crush Claw
+- Icicle Crash
+- Rapid Spin
+- Gyro Ball
+
+Klefki
+Level: 35
+IVs: 15 HP / 15 Atk / 15 Def / 15 SpA / 15 SpD / 15 Spe
+- Flash Cannon
+- Heal Block
+- Dazzling Gleam
+- Skitter Smack
 
 === TRAINER_ETHAN_2 ===
 Name: ETHAN
@@ -8659,16 +8675,24 @@ Class: Picnicker
 Pic: Picnicker
 Gender: Female
 Music: Girl
-Double Battle: No
+Double Battle: Yes
 AI: Basic Trainer
 
-Taillow
-Level: 17
-IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
+Toucannon @ Flying Gem
+Level: 35
+IVs: 15 HP / 15 Atk / 15 Def / 15 SpA / 15 SpD / 15 Spe
+- Drill Peck
+- Roost
+- Screech
+- Bullet Seed
 
-Lombre
-Level: 17
-IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
+Garbodor @ Black Sludge
+Level: 35
+IVs: 15 HP / 15 Atk / 15 Def / 15 SpA / 15 SpD / 15 Spe
+- Sludge Wave
+- Toxic
+- Protect
+- Rest
 
 === TRAINER_NANCY ===
 Name: NANCY
@@ -8751,13 +8775,21 @@ Music: Girl
 Double Battle: No
 AI: Basic Trainer
 
-Shroomish
-Level: 17
-IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
+Dubwool
+Level: 34
+IVs: 15 HP / 15 Atk / 15 Def / 15 SpA / 15 SpD / 15 Spe
+- Headbutt
+- Copycat
+- Thunder Wave
+- Bounce
 
-Marill
-Level: 17
-IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
+Thievul
+Level: 34
+IVs: 15 HP / 15 Atk / 15 Def / 15 SpA / 15 SpD / 15 Spe
+- Sucker Punch
+- Hone Claws
+- Thief
+- Shadow Claw
 
 === TRAINER_DIANA_2 ===
 Name: DIANA
@@ -11618,13 +11650,21 @@ Music: Hiker
 Double Battle: No
 AI: Basic Trainer
 
-Numel
-Level: 17
-IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
+Golem
+Level: 36
+IVs: 15 HP / 15 Atk / 15 Def / 15 SpA / 15 SpD / 15 Spe
+- Rock Blast
+- Rock Polish
+- Earthquake
+- Iron Defense
 
-Machop
-Level: 17
-IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
+Hitmonlee
+Level: 36
+IVs: 15 HP / 15 Atk / 15 Def / 15 SpA / 15 SpD / 15 Spe
+- High Jump Kick
+- Focus Energy
+- Sucker Punch
+- Blaze Kick
 
 === TRAINER_TRENT_1 ===
 Name: TRENT
@@ -11635,17 +11675,20 @@ Music: Hiker
 Double Battle: No
 AI: Basic Trainer
 
-Geodude
-Level: 16
-IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
+Golem @ Choice Scarf
+Level: 30
+IVs: 0 HP / 31 Atk / 0 Def / 0 SpA / 0 SpD / 31 Spe
+- Explosion
 
-Geodude
-Level: 17
-IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
+Golem @ Choice Scarf
+Level: 30
+IVs: 0 HP / 31 Atk / 0 Def / 0 SpA / 0 SpD / 31 Spe
+- Explosion
 
-Geodude
-Level: 16
-IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
+Golem @ Choice Scarf
+Level: 30
+IVs: 0 HP / 31 Atk / 0 Def / 0 SpA / 0 SpD / 31 Spe
+- Explosion
 
 === TRAINER_LENNY ===
 Name: LENNY
