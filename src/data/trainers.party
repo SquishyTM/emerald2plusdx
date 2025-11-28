@@ -5531,15 +5531,21 @@ Pic: Pokefan M
 Gender: Male
 Music: Twins
 Double Battle: No
-AI: Basic Trainer
+AI: Smart Trainer
 
-Taillow @ Oran Berry
-Level: 16
-IVs: 3 HP / 3 Atk / 3 Def / 3 SpA / 3 SpD / 3 Spe
+Swellow @ Flame Orb
+Ability: Guts
+Level: 34
+IVs: 15 HP / 15 Atk / 15 Def / 15 SpA / 15 SpD / 15 Spe
 
-Zigzagoon @ Oran Berry
-Level: 16
-IVs: 3 HP / 3 Atk / 3 Def / 3 SpA / 3 SpD / 3 Spe
+Bibarel @ Sitrus Berry
+Ability: Moody
+Level: 34
+IVs: 15 HP / 15 Atk / 15 Def / 15 SpA / 15 SpD / 15 Spe
+- Recycle
+- Surf
+- Protect
+- Super Fang
 
 === TRAINER_MIGUEL_1 ===
 Name: MIGUEL
@@ -5670,11 +5676,16 @@ Pic: Pokefan F
 Gender: Female
 Music: Twins
 Double Battle: No
-AI: Basic Trainer / Try To Faint
+AI: Smart Trainer
 
-Roselia @ Oran Berry
-Level: 17
-IVs: 6 HP / 6 Atk / 6 Def / 6 SpA / 6 SpD / 6 Spe
+Lilligant @ Sitrus Berry
+Ability: Own Tempo
+Level: 32
+IVs: 15 HP / 15 Atk / 15 Def / 15 SpA / 15 SpD / 15 Spe
+- Petal Dance
+- Spore
+- Stun Spore
+- Teeter Dance
 
 === TRAINER_VANESSA ===
 Name: VANESSA
@@ -5891,15 +5902,16 @@ Pic: Expert F
 Gender: Female
 Music: Intense
 Double Battle: No
-AI: Basic Trainer
+AI: Smart Trainer
 
-Meditite
-Level: 18
+OmaeWa (Hitmonchan) @ Punching Glove
+Ability: Iron Fist
+Level: 33
 IVs: 24 HP / 24 Atk / 24 Def / 24 SpA / 24 SpD / 24 Spe
-- High Jump Kick
-- Meditate
-- Confusion
-- Detect
+- Thunder Punch
+- Ice Punch
+- Fire Punch
+- Drain Punch
 
 === TRAINER_SHELBY_1 ===
 Name: SHELBY
@@ -11228,19 +11240,31 @@ Pic: Lass
 Gender: Female
 Music: Female
 Double Battle: No
-AI: Basic Trainer
+AI: Smart Trainer
 
-Marill
-Level: 15
+Azumarill
+Level: 32
 IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
+- Aqua Tail
+- Play Rough
+- Rain Dance
 
-Shroomish
-Level: 15
+Clefable
+Ability: Magic Guard
+Level: 30
 IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
+- Dazzling Gleam
+- Protect
+- Wish
+- Toxic
 
-Numel
-Level: 15
+Grafaiai
+Level: 30
 IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
+- Poison Fang
+- Slash
+- Flatter
+- Taunt
 
 === TRAINER_HALEY_2 ===
 Name: HALEY
@@ -13249,9 +13273,27 @@ Music: Male
 Double Battle: No
 AI: Basic Trainer
 
-Sandshrew
-Level: 19
-IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
+Sandslash
+Level: 31
+IVs: 15 HP / 15 Atk / 15 Def / 15 SpA / 15 SpD / 15 Spe
+- Bulldoze
+- Slash
+- Knock Off
+- Super Fang
+
+Raticate
+Level: 31
+IVs: 15 HP / 15 Atk / 15 Def / 15 SpA / 15 SpD / 15 Spe
+- Super Fang
+- Hyper Fang
+- Ice Beam
+- Sucker Punch
+
+Ditto
+Ability: Imposter
+Level: 32
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+- Transform
 
 === TRAINER_CELINA ===
 Name: CELINA
@@ -13262,9 +13304,31 @@ Music: Female
 Double Battle: No
 AI: Basic Trainer
 
-Roselia
-Level: 18
-IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
+Whimsicott @ Focus Sash
+Level: 31
+Ability: Prankster
+Shiny: Yes
+IVs: 15 HP / 15 Atk / 15 Def / 15 SpA / 15 SpD / 15 Spe
+- Growth
+- Energy Ball
+- Leech Seed
+- Tailwind
+
+Eldegoss
+Level: 31
+IVs: 15 HP / 15 Atk / 15 Def / 15 SpA / 15 SpD / 15 Spe
+- Synthesis
+- Hyper Voice
+- Cotton Spore
+- Pollen Puff
+
+Meganium
+Level: 32
+IVs: 15 HP / 15 Atk / 15 Def / 15 SpA / 15 SpD / 15 Spe
+- Dazzling Gleam 
+- Body Slam
+- Petal Dance
+- Synthesis
 
 === TRAINER_BIANCA ===
 Name: BIANCA
@@ -13275,9 +13339,21 @@ Music: Girl
 Double Battle: No
 AI: Basic Trainer
 
-Shroomish
-Level: 18
-IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
+Lurantis
+Level: 33
+IVs: 15 HP / 15 Atk / 15 Def / 15 SpA / 15 SpD / 15 Spe
+- X-Scissor
+- Ingrain
+- Night Slash
+- Synthesis
+
+Breloom
+Level: 33
+IVs: 15 HP / 15 Atk / 15 Def / 15 SpA / 15 SpD / 15 Spe
+- Sky Uppercut
+- Mach Punch
+- Spore
+- Seed Bomb
 
 === TRAINER_HAYDEN ===
 Name: HAYDEN
@@ -13288,9 +13364,21 @@ Music: Hiker
 Double Battle: No
 AI: Basic Trainer
 
-Numel
-Level: 18
-IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
+Camerupt
+Level: 33
+IVs: 15 HP / 15 Atk / 15 Def / 15 SpA / 15 SpD / 15 Spe
+- Lava Plume
+- Earth Power
+- Rock Slide
+- Curse
+
+Heatmor
+Level: 33
+IVs: 15 HP / 15 Atk / 15 Def / 15 SpA / 15 SpD / 15 Spe
+- Fire Lash
+- Bug Bite
+- Thunder Punch
+- Will-O-Wisp
 
 === TRAINER_SOPHIE ===
 Name: SOPHIE
