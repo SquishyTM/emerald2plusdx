@@ -1552,6 +1552,7 @@ extern const u8 gText_ChoosePokemonCancel[];
 extern const u8 gText_ChoosePokemonConfirm[];
 extern const u8 gText_SendWhichMonToPC[];
 extern const u8 gText_MoveItemWhere[];
+extern const u8 gText_TrainWhichMon[];
 extern const u8 gText_XsYAnd[];
 extern const u8 gText_XsYWereSwapped[];
 extern const u8 gText_MoveToWhere[];

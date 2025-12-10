@@ -101,6 +101,7 @@ void ChooseContestMon(void);
 void ChoosePartyMon(void);
 void ChooseMonForMoveRelearner(void);
 void BattlePyramidChooseMonHeldItems(void);
+void ShowLevelTrainingMenu(void);
 void DoBattlePyramidMonsHaveHeldItem(void);
 void IsSelectedMonEgg(void);
 void IsLastMonThatKnowsSurf(void);

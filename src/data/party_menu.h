@@ -571,6 +571,17 @@ static const struct WindowTemplate sLevelUpStatsWindowTemplate =
     .baseBlock = 0x2E9,
 };
 
+static const struct WindowTemplate sQuantityPriceWindowTemplate =
+{
+    .bg = 2,
+    .tilemapLeft = 19,
+    .tilemapTop = 13,
+    .width = 10,
+    .height = 2,
+    .paletteNum = 14,
+    .baseBlock = 0x1DF,
+};
+
 static const struct WindowTemplate sUnusedWindowTemplate1 =
 {
     .bg = 2,
@@ -663,6 +674,7 @@ static const u8 *const sActionStringTable[] =
     [PARTY_MSG_NO_POKEMON]             = COMPOUND_STRING("You have no POKéMON."),
     [PARTY_MSG_CHOOSE_MON_FOR_BOX]     = gText_SendWhichMonToPC,
     [PARTY_MSG_MOVE_ITEM_WHERE]        = gText_MoveItemWhere,
+    [PARTY_MSG_TRAIN_WHICH_MON]        = gText_TrainWhichMon,
 };
 
 static const u8 *const sDescriptionStringTable[] =
