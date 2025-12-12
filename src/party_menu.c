@@ -3143,12 +3143,33 @@ static void PrintQuantityPrice(u8 taskId)
     AddTextPrinterParameterized(sPartyMenuInternal->windowId[0], FONT_NORMAL, gStringVar4, 0, 1, 0, 0);
 }
 
+static bool8 IsQuantityHPRecoveryItem(u16 item)
+{
+    const u8 *effect = GetItemEffect(item);
+
+    if (effect == NULL)
+        return FALSE;
+
+    if ((effect[4] & (ITEM4_REVIVE | ITEM4_HEAL_HP)) == ITEM4_HEAL_HP)
+        return effect[6] != ITEM6_HEAL_HP_FULL && effect[6] != ITEM6_HEAL_HP_LVL_UP;
+    else
+        return FALSE;
+}
+
+static bool8 NotUsingHPEVItemOnShedinja(struct Pokemon *mon, u16 item)
+{
+    if (GetItemEffectType(item) == ITEM_EFFECT_HP_EV && GetMonData(mon, MON_DATA_SPECIES) == SPECIES_SHEDINJA)
+        return FALSE;
+    return TRUE;
+}
+
 static bool8 CreateQuantityWindow(u8 taskId)
 {
     s16 *data = gTasks[taskId].data;
     struct Pokemon *mon = &gPlayerParty[gPartyMenu.slotId];
+    u16 item = gSpecialVar_ItemId;
 
-    if (GetItemEffectType(gSpecialVar_ItemId) == ITEM_EFFECT_RAISE_LEVEL)
+    if (GetItemEffectType(item) == ITEM_EFFECT_RAISE_LEVEL)
     {
         u8 level = GetMonData(mon, MON_DATA_LEVEL);
         u8 levelCap = B_RARE_CANDY_CAP ? GetCurrentLevelCap() : MAX_LEVEL;
@@ -3164,7 +3185,7 @@ static bool8 CreateQuantityWindow(u8 taskId)
         tQuantity = 1;
         tMaxQuantity = 1;
 
-        u8 param = GetItemHoldEffectParam(gSpecialVar_ItemId);
+        u8 param = GetItemHoldEffectParam(item);
         if (param == 0)
         {
             tMaxQuantity = levelCap - level;
@@ -3177,11 +3198,52 @@ static bool8 CreateQuantityWindow(u8 taskId)
             tMaxQuantity = maxCandies;
         }
 
-        if (GetItemConsumability(gSpecialVar_ItemId))
+        if (GetItemConsumability(item))
         {
-            u16 numCandies = CountTotalItemQuantityInBag(gSpecialVar_ItemId);
+            u16 numCandies = CountTotalItemQuantityInBag(item);
             if (tMaxQuantity > numCandies)
                 tMaxQuantity = numCandies;
+        }
+
+        if (tMaxQuantity > 999)
+            tMaxQuantity = 999;
+    }
+    else if (IsQuantityHPRecoveryItem(item))
+    {
+        u32 currentHP = GetMonData(mon, MON_DATA_HP, NULL);
+        u32 maxHP = GetMonData(mon, MON_DATA_MAX_HP, NULL);
+
+        if (!NotUsingHPEVItemOnShedinja(mon, item) || currentHP >= maxHP)
+        {
+            DisplayPartyMenuMessage(gText_WontHaveEffect, FALSE);
+            ScheduleBgCopyTilemapToVram(2);
+            gTasks[taskId].func = Task_ReturnToChooseMonAfterText;
+            return FALSE;
+        }
+
+        tQuantity = 1;
+
+        u32 hpPerUse = GetItemEffect(item)[6];
+        switch (hpPerUse)
+        {
+        case ITEM6_HEAL_HP_FULL:
+            hpPerUse = maxHP;
+            break;
+        case ITEM6_HEAL_HP_HALF:
+            hpPerUse = maxHP / 2;
+            break;
+        case ITEM6_HEAL_HP_QUARTER:
+            hpPerUse = maxHP / 4;
+            break;
+        }
+
+        tMaxQuantity = (maxHP - currentHP + hpPerUse - 1) / hpPerUse;
+
+        if (GetItemConsumability(item))
+        {
+            u16 numItems = CountTotalItemQuantityInBag(item);
+            if (tMaxQuantity > numItems)
+                tMaxQuantity = numItems;
         }
 
         if (tMaxQuantity > 999)
@@ -3316,6 +3378,34 @@ static void Task_LevelUpByQuantity(u8 taskId)
     }
 }
 
+static void Task_RestoreHPByQuantity(u8 taskId)
+{
+    s16 *data = gTasks[taskId].data;
+    u16 hp;
+    struct Pokemon *mon = &gPlayerParty[gPartyMenu.slotId];
+    u16 item = gSpecialVar_ItemId;
+    u8 i;
+
+    hp = GetMonData(mon, MON_DATA_HP);
+    for (i = 0; i < tQuantity; i++)
+        ExecuteTableBasedItemEffect(mon, item, gPartyMenu.slotId, 0);
+
+    gPartyMenuUseExitCallback = TRUE;
+
+    PlaySE(SE_USE_ITEM);
+    if (GetItemConsumability(item))
+        RemoveBagItem(item, 1);
+
+    SetPartyMonAilmentGfx(mon, &sPartyMenuBoxes[gPartyMenu.slotId]);
+    if (gSprites[sPartyMenuBoxes[gPartyMenu.slotId].statusSpriteId].invisible)
+        DisplayPartyPokemonLevelCheck(mon, &sPartyMenuBoxes[gPartyMenu.slotId], 1);
+
+    if (hp == 0)
+        AnimatePartySlot(gPartyMenu.slotId, 1);
+    PartyMenuModifyHP(taskId, gPartyMenu.slotId, 1, GetMonData(mon, MON_DATA_HP) - hp, Task_DisplayHPRestoredMessage);
+    ResetHPTaskData(taskId, 0, hp);
+}
+
 static void Task_HandleQuantityMenuInput(u8 taskId)
 {
     s16 *data = gTasks[taskId].data;
@@ -3332,6 +3422,8 @@ static void Task_HandleQuantityMenuInput(u8 taskId)
 
         if (GetItemEffectType(gSpecialVar_ItemId) == ITEM_EFFECT_RAISE_LEVEL)
             Task_LevelUpByQuantity(taskId);
+        else if (IsQuantityHPRecoveryItem(gSpecialVar_ItemId))
+            Task_RestoreHPByQuantity(taskId);
     }
     else if (JOY_NEW(B_BUTTON))
     {
@@ -5058,7 +5150,8 @@ void CB2_ShowPartyMenuForItemUse(void)
         task = Task_SetSacredAshCB;
         msgId = PARTY_MSG_NONE;
     }
-    else if (GetItemEffectType(gSpecialVar_ItemId) == ITEM_EFFECT_RAISE_LEVEL)
+    else if (menuType == PARTY_MENU_TYPE_FIELD && 
+      (GetItemEffectType(gSpecialVar_ItemId) == ITEM_EFFECT_RAISE_LEVEL || IsQuantityHPRecoveryItem(gSpecialVar_ItemId)))
     {
         partyAction = PARTY_ACTION_QUANTITY;
         task = Task_HandleChooseMonInput;
@@ -5175,13 +5268,6 @@ static void GetMedicineItemEffectMessage(u16 item, u32 statusCured)
         StringExpandPlaceholders(gStringVar4, gText_WontHaveEffect);
         break;
     }
-}
-
-static bool8 NotUsingHPEVItemOnShedinja(struct Pokemon *mon, u16 item)
-{
-    if (GetItemEffectType(item) == ITEM_EFFECT_HP_EV && GetMonData(mon, MON_DATA_SPECIES) == SPECIES_SHEDINJA)
-        return FALSE;
-    return TRUE;
 }
 
 static bool32 IsItemFlute(u16 item)
