@@ -574,9 +574,20 @@ static const struct WindowTemplate sLevelUpStatsWindowTemplate =
 static const struct WindowTemplate sQuantityPriceWindowTemplate =
 {
     .bg = 2,
-    .tilemapLeft = 19,
+    .tilemapLeft = 1,
     .tilemapTop = 13,
     .width = 10,
+    .height = 2,
+    .paletteNum = 14,
+    .baseBlock = 0x1DF,
+};
+
+static const struct WindowTemplate sQuantityWindowTemplate =
+{
+    .bg = 2,
+    .tilemapLeft = 1,
+    .tilemapTop = 13,
+    .width = 4,
     .height = 2,
     .paletteNum = 14,
     .baseBlock = 0x1DF,
