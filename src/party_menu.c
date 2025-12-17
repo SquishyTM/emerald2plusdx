@@ -3128,7 +3128,8 @@ static void PrintQuantity(u8 taskId)
     s16 *data = gTasks[taskId].data;
 
     ConvertIntToDecimalStringN(gStringVar1, tQuantity, STR_CONV_MODE_LEADING_ZEROS, 3);
-    StringExpandPlaceholders(gStringVar4, gText_xVar1);
+    ConvertIntToDecimalStringN(gStringVar2, tMaxQuantity, STR_CONV_MODE_LEADING_ZEROS, 3);
+    StringExpandPlaceholders(gStringVar4, gText_Var1SlashVar2);
     AddTextPrinterParameterized(sPartyMenuInternal->windowId[0], FONT_NORMAL, gStringVar4, 0, 1, 0, 0);
 }
 
@@ -3190,11 +3191,11 @@ static bool8 CreateQuantityWindow(u8 taskId)
         {
             tMaxQuantity = levelCap - level;
         }
-        else if (param - 1 < EXP_30000)
+        else if (param <= EXP_30000)
         {
             u32 maxExp = gExperienceTables[gSpeciesInfo[GetMonData(mon, MON_DATA_SPECIES, NULL)].growthRate][levelCap];
             u32 expPerCandy = sExpCandyExperienceTable[param - 1];
-            u8 maxCandies = (maxExp - GetMonData(mon, MON_DATA_EXP) + expPerCandy - 1) / expPerCandy;
+            u16 maxCandies = (maxExp - GetMonData(mon, MON_DATA_EXP) + expPerCandy - 1) / expPerCandy;
             tMaxQuantity = maxCandies;
         }
 
@@ -3213,7 +3214,7 @@ static bool8 CreateQuantityWindow(u8 taskId)
         u32 currentHP = GetMonData(mon, MON_DATA_HP, NULL);
         u32 maxHP = GetMonData(mon, MON_DATA_MAX_HP, NULL);
 
-        if (!NotUsingHPEVItemOnShedinja(mon, item) || currentHP >= maxHP)
+        if (!NotUsingHPEVItemOnShedinja(mon, item) || currentHP == 0 || currentHP >= maxHP)
         {
             DisplayPartyMenuMessage(gText_WontHaveEffect, FALSE);
             ScheduleBgCopyTilemapToVram(2);
@@ -3302,6 +3303,7 @@ static void Task_LevelUpByQuantity(u8 taskId)
 {
     s16 *data = gTasks[taskId].data;
     struct Pokemon *mon = &gPlayerParty[gPartyMenu.slotId];
+    u16 item = gSpecialVar_ItemId;
     struct PartyMenuInternal *ptr = sPartyMenuInternal;
     s16 *arrayPtr = ptr->data;
 
@@ -3312,7 +3314,7 @@ static void Task_LevelUpByQuantity(u8 taskId)
 
     if (gPartyMenu.menuType == PARTY_MENU_TYPE_FIELD)
     {
-        u8 param = GetItemHoldEffectParam(gSpecialVar_ItemId);
+        u8 param = GetItemHoldEffectParam(item);
         if (param == 0)
         {
             experience = gExperienceTables[gSpeciesInfo[GetMonData(mon, MON_DATA_SPECIES, NULL)].growthRate][sInitialLevel + tQuantity];
@@ -3342,9 +3344,9 @@ static void Task_LevelUpByQuantity(u8 taskId)
 
     if (gPartyMenu.menuType == PARTY_MENU_TYPE_FIELD)
     {
-        ExecuteTableBasedItemEffect(mon, gSpecialVar_ItemId, gPartyMenu.slotId, 0);
-        if (GetItemConsumability(gSpecialVar_ItemId))
-            RemoveBagItem(gSpecialVar_ItemId, tQuantity);
+        ExecuteTableBasedItemEffect(mon, item, gPartyMenu.slotId, 0);
+        if (GetItemConsumability(item))
+            RemoveBagItem(item, tQuantity);
     }
     else
     {
@@ -3367,11 +3369,11 @@ static void Task_LevelUpByQuantity(u8 taskId)
     else
     {
         PlaySE(SE_USE_ITEM);
-        ConvertIntToDecimalStringN(gStringVar2, sExpCandyExperienceTable[GetItemHoldEffectParam(gSpecialVar_ItemId) - 1] * tQuantity, STR_CONV_MODE_LEFT_ALIGN, 6);
+        ConvertIntToDecimalStringN(gStringVar2, sExpCandyExperienceTable[GetItemHoldEffectParam(item) - 1] * tQuantity, STR_CONV_MODE_LEFT_ALIGN, 6);
         StringExpandPlaceholders(gStringVar4, gText_PkmnGainedExp);
         DisplayPartyMenuMessage(gStringVar4, FALSE);
         ScheduleBgCopyTilemapToVram(2);
-        if (CheckBagHasItem(gSpecialVar_ItemId, 1))
+        if (CheckBagHasItem(item, 1))
             gTasks[taskId].func = Task_ReturnToTrainMonAfterText;
         else
             gTasks[taskId].func = Task_ClosePartyMenuAfterText;
@@ -3400,8 +3402,6 @@ static void Task_RestoreHPByQuantity(u8 taskId)
     if (gSprites[sPartyMenuBoxes[gPartyMenu.slotId].statusSpriteId].invisible)
         DisplayPartyPokemonLevelCheck(mon, &sPartyMenuBoxes[gPartyMenu.slotId], 1);
 
-    if (hp == 0)
-        AnimatePartySlot(gPartyMenu.slotId, 1);
     PartyMenuModifyHP(taskId, gPartyMenu.slotId, 1, GetMonData(mon, MON_DATA_HP) - hp, Task_DisplayHPRestoredMessage);
     ResetHPTaskData(taskId, 0, hp);
 }
