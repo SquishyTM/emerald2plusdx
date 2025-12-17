@@ -322,8 +322,10 @@ static void TryGiveMailToSelectedMon(u8);
 static void TryGiveItemOrMailToSelectedMon(u8);
 static void SwitchSelectedMons(u8);
 static void TryEnterMonForMinigame(u8, u8);
-static void Task_TryCreateQuantityWindow(u8);
-static void Task_TryCreateQuantityPriceWindow(u8);
+static void CreateQuantityWindow(u8, u16, TaskFunc);
+static void CreateQuantityPriceWindow(u8, u16, u16, u16, TaskFunc);
+static void Task_LevelUpByQuantity(u8);
+static void Task_RestoreHPByQuantity(u8);
 static void Task_TryCreateSelectionWindow(u8);
 static void FinishTwoMonAction(u8);
 static void CancelParticipationPrompt(u8);
@@ -332,6 +334,7 @@ static const u8 *GetFacilityCancelString(void);
 static void Task_CancelChooseMonYesNo(u8);
 static void PartyMenuDisplayYesNoMenu(void);
 static void Task_HandleCancelChooseMonYesNoInput(u8);
+static void Task_ReturnToUseItemAfterText(u8);
 static void Task_ReturnToChooseMonAfterText(u8);
 static void UpdateCurrentPartySelection(s8 *, s8);
 static void UpdatePartySelectionSingleLayout(s8 *, s8);
@@ -1592,8 +1595,19 @@ static void HandleChooseMonSelection(u8 taskId, s8 *slotPtr)
         case PARTY_ACTION_LEVEL_TRAINING:
             if (IsSelectedMonNotEgg((u8 *)slotPtr))
             {
+                u8 level = GetMonData(&gPlayerParty[gPartyMenu.slotId], MON_DATA_LEVEL);
+                u8 levelCap = B_RARE_CANDY_CAP ? GetCurrentLevelCap() : MAX_LEVEL;
+
+                if (level >= levelCap)
+                {
+                    DisplayPartyMenuMessage(gText_WontHaveEffect, FALSE);
+                    ScheduleBgCopyTilemapToVram(2);
+                    gTasks[taskId].func = Task_ReturnToUseItemAfterText;
+                    return;
+                }
+
                 PlaySE(SE_SELECT);
-                Task_TryCreateQuantityPriceWindow(taskId);
+                CreateQuantityPriceWindow(taskId, levelCap - level, 100, 100, Task_LevelUpByQuantity);
             }
             break;
         default:
@@ -3113,7 +3127,9 @@ static u8 GetPartyMenuActionsType(struct Pokemon *mon)
 
 #define tQuantity       data[0]
 #define tMaxQuantity    data[1]
-#define tCost           data[2]
+#define tBaseCost       data[2]
+#define tCostPer        data[3]
+#define tCallback       4
 
 static void Task_ReturnToTrainMonAfterText(u8 taskId)
 {
@@ -3139,12 +3155,62 @@ static void PrintQuantity(u8 taskId)
 static void PrintQuantityPrice(u8 taskId)
 {
     s16 *data = gTasks[taskId].data;
+    u32 cost = tBaseCost + tCostPer * tQuantity;
 
     FillWindowPixelBuffer(sPartyMenuInternal->windowId[0], PIXEL_FILL(1));
-    PrintMoneyAmount(sPartyMenuInternal->windowId[0], CalculateMoneyTextHorizontalPosition(tCost), 1, tCost, TEXT_SKIP_DRAW);
+    PrintMoneyAmount(sPartyMenuInternal->windowId[0], CalculateMoneyTextHorizontalPosition(cost), 1, cost, TEXT_SKIP_DRAW);
     ConvertIntToDecimalStringN(gStringVar1, tQuantity, STR_CONV_MODE_LEADING_ZEROS, 2);
     StringExpandPlaceholders(gStringVar4, gText_xVar1);
     AddTextPrinterParameterized(sPartyMenuInternal->windowId[0], FONT_NORMAL, gStringVar4, 0, 1, 0, 0);
+}
+
+static void Task_HandleQuantityMenuInput(u8 taskId)
+{
+    s16 *data = gTasks[taskId].data;
+
+    if (AdjustQuantityAccordingToDPadInput(&tQuantity, tMaxQuantity))
+    {
+        PrintQuantity(taskId);
+    }
+    else if (JOY_NEW(A_BUTTON))
+    {
+        PlaySE(SE_SELECT);
+        PartyMenuRemoveWindow(&sPartyMenuInternal->windowId[0]);
+        PartyMenuRemoveWindow(&sPartyMenuInternal->windowId[1]);
+        ((TaskFunc)GetWordTaskArg(taskId, tCallback))(taskId);
+    }
+    else if (JOY_NEW(B_BUTTON))
+    {
+        PlaySE(SE_SELECT);
+        gTasks[taskId].func = Task_HandleChooseMonInput;
+        PartyMenuRemoveWindow(&sPartyMenuInternal->windowId[0]);
+        DisplayPartyMenuStdMessage(PARTY_MSG_USE_ON_WHICH_MON);
+    }
+}
+
+static void Task_HandleQuantityPriceMenuInput(u8 taskId)
+{
+    s16 *data = gTasks[taskId].data;
+
+    if (AdjustQuantityAccordingToDPadInput(&tQuantity, tMaxQuantity))
+    {
+        PrintQuantityPrice(taskId);
+    }
+    else if (JOY_NEW(A_BUTTON))
+    {
+        PlaySE(SE_SELECT);
+        RemoveMoney(&gSaveBlock1Ptr->money, tBaseCost + tCostPer * tQuantity);
+        PartyMenuRemoveWindow(&sPartyMenuInternal->windowId[0]);
+        PartyMenuRemoveWindow(&sPartyMenuInternal->windowId[1]);
+        ((TaskFunc)GetWordTaskArg(taskId, tCallback))(taskId);
+    }
+    else if (JOY_NEW(B_BUTTON))
+    {
+        PlaySE(SE_SELECT);
+        gTasks[taskId].func = Task_HandleChooseMonInput;
+        PartyMenuRemoveWindow(&sPartyMenuInternal->windowId[0]);
+        DisplayPartyMenuStdMessage(PARTY_MSG_TRAIN_WHICH_MON);
+    }
 }
 
 static bool8 NotUsingHPEVItemOnShedinja(struct Pokemon *mon, u16 item)
@@ -3154,139 +3220,37 @@ static bool8 NotUsingHPEVItemOnShedinja(struct Pokemon *mon, u16 item)
     return TRUE;
 }
 
-static bool8 CreateQuantityWindow(u8 taskId)
+static void CreateQuantityWindow(u8 taskId, u16 maxQuantity, TaskFunc callback)
 {
     s16 *data = gTasks[taskId].data;
-    struct Pokemon *mon = &gPlayerParty[gPartyMenu.slotId];
-    u16 item = gSpecialVar_ItemId;
 
-    if (GetItemEffectType(item) == ITEM_EFFECT_RAISE_LEVEL)
-    {
-        u8 level = GetMonData(mon, MON_DATA_LEVEL);
-        u8 levelCap = B_RARE_CANDY_CAP ? GetCurrentLevelCap() : MAX_LEVEL;
-
-        if (level >= levelCap)
-        {
-            DisplayPartyMenuMessage(gText_WontHaveEffect, FALSE);
-            ScheduleBgCopyTilemapToVram(2);
-            gTasks[taskId].func = Task_ReturnToUseItemAfterText;
-            return FALSE;
-        }
-
-        tQuantity = 1;
-        tMaxQuantity = 1;
-
-        u8 param = GetItemHoldEffectParam(item);
-        if (param == 0)
-        {
-            tMaxQuantity = levelCap - level;
-        }
-        else if (param <= EXP_30000)
-        {
-            u32 maxExp = gExperienceTables[gSpeciesInfo[GetMonData(mon, MON_DATA_SPECIES, NULL)].growthRate][levelCap];
-            u32 expPerCandy = sExpCandyExperienceTable[param - 1];
-            u16 maxCandies = (maxExp - GetMonData(mon, MON_DATA_EXP) + expPerCandy - 1) / expPerCandy;
-            tMaxQuantity = maxCandies;
-        }
-
-        if (GetItemConsumability(item))
-        {
-            u16 numCandies = CountTotalItemQuantityInBag(item);
-            if (tMaxQuantity > numCandies)
-                tMaxQuantity = numCandies;
-        }
-
-        if (tMaxQuantity > 999)
-            tMaxQuantity = 999;
-    }
-    else if (IsQuantityHPRecoveryItem(item))
-    {
-        u32 currentHP = GetMonData(mon, MON_DATA_HP, NULL);
-        u32 maxHP = GetMonData(mon, MON_DATA_MAX_HP, NULL);
-
-        if (!NotUsingHPEVItemOnShedinja(mon, item) || currentHP == 0 || currentHP >= maxHP)
-        {
-            DisplayPartyMenuMessage(gText_WontHaveEffect, FALSE);
-            ScheduleBgCopyTilemapToVram(2);
-            gTasks[taskId].func = Task_ReturnToChooseMonAfterText;
-            return FALSE;
-        }
-
-        tQuantity = 1;
-
-        u32 hpPerUse = GetItemEffect(item)[6];
-        switch (hpPerUse)
-        {
-        case ITEM6_HEAL_HP_FULL:
-            hpPerUse = maxHP;
-            break;
-        case ITEM6_HEAL_HP_HALF:
-            hpPerUse = maxHP / 2;
-            break;
-        case ITEM6_HEAL_HP_QUARTER:
-            hpPerUse = maxHP / 4;
-            break;
-        }
-
-        tMaxQuantity = (maxHP - currentHP + hpPerUse - 1) / hpPerUse;
-
-        if (GetItemConsumability(item))
-        {
-            u16 numItems = CountTotalItemQuantityInBag(item);
-            if (tMaxQuantity > numItems)
-                tMaxQuantity = numItems;
-        }
-
-        if (tMaxQuantity > 999)
-            tMaxQuantity = 999;
-    }
+    tQuantity = 1;
+    tMaxQuantity = maxQuantity;
+    SetWordTaskArg(taskId, tCallback, (u32)callback);
+    gTasks[taskId].func = Task_HandleQuantityMenuInput;
 
     sPartyMenuInternal->windowId[0] = AddWindow(&sQuantityWindowTemplate);
     DrawStdFrameWithCustomTileAndPalette(sPartyMenuInternal->windowId[0], FALSE, 0x4F, 13);
     PrintQuantity(taskId);
     ScheduleBgCopyTilemapToVram(2);
-    return TRUE;
 }
 
-static bool8 CreateQuantityPriceWindow(u8 taskId)
+static void CreateQuantityPriceWindow(u8 taskId, u16 maxQuantity, u16 baseCost, u16 costPer, TaskFunc callback)
 {
     s16 *data = gTasks[taskId].data;
-    struct Pokemon *mon = &gPlayerParty[gPartyMenu.slotId];
+    u32 maxPurchasable = (GetMoney(&gSaveBlock1Ptr->money) - baseCost) / costPer;
 
-    if (gPartyMenu.action == PARTY_ACTION_LEVEL_TRAINING)
-    {
-        u8 level = GetMonData(mon, MON_DATA_LEVEL);
-        u8 levelCap = GetCurrentLevelCap();
-        u32 money = GetMoney(&gSaveBlock1Ptr->money);
-
-        if (level >= levelCap)
-        {
-            DisplayPartyMenuMessage(gText_WontHaveEffect, FALSE);
-            ScheduleBgCopyTilemapToVram(2);
-            gTasks[taskId].func = Task_ReturnToTrainMonAfterText;
-            return FALSE;
-        }
-        else if (money < 200)
-        {
-            DisplayPartyMenuMessage(gText_YouDontHaveMoney, FALSE);
-            ScheduleBgCopyTilemapToVram(2);
-            gTasks[taskId].func = Task_ClosePartyMenuAfterText;
-            return FALSE;
-        }
-
-        tQuantity = 1;
-        tMaxQuantity = levelCap - level;
-        tCost = 200;
-
-        if (money < tMaxQuantity * 100 + 100)
-            tMaxQuantity = (money - 100) / 100;
-    }
+    tQuantity = 1;
+    tMaxQuantity = maxPurchasable < maxQuantity ? maxPurchasable : maxQuantity;
+    tBaseCost = baseCost;
+    tCostPer = costPer;
+    SetWordTaskArg(taskId, tCallback, (u32)callback);
+    gTasks[taskId].func = Task_HandleQuantityPriceMenuInput;
 
     sPartyMenuInternal->windowId[0] = AddWindow(&sQuantityPriceWindowTemplate);
     DrawStdFrameWithCustomTileAndPalette(sPartyMenuInternal->windowId[0], FALSE, 0x4F, 13);
     PrintQuantityPrice(taskId);
     ScheduleBgCopyTilemapToVram(2);
-    return TRUE;
 }
 
 static void Task_LevelUpByQuantity(u8 taskId)
@@ -3396,86 +3360,11 @@ static void Task_RestoreHPByQuantity(u8 taskId)
     ResetHPTaskData(taskId, 0, hp);
 }
 
-static void Task_HandleQuantityMenuInput(u8 taskId)
-{
-    s16 *data = gTasks[taskId].data;
-
-    if (AdjustQuantityAccordingToDPadInput(&tQuantity, tMaxQuantity))
-    {
-        PrintQuantity(taskId);
-    }
-    else if (JOY_NEW(A_BUTTON))
-    {
-        PlaySE(SE_SELECT);
-        PartyMenuRemoveWindow(&sPartyMenuInternal->windowId[0]);
-        PartyMenuRemoveWindow(&sPartyMenuInternal->windowId[1]);
-
-        if (GetItemEffectType(gSpecialVar_ItemId) == ITEM_EFFECT_RAISE_LEVEL)
-            Task_LevelUpByQuantity(taskId);
-        else if (IsQuantityHPRecoveryItem(gSpecialVar_ItemId))
-            Task_RestoreHPByQuantity(taskId);
-    }
-    else if (JOY_NEW(B_BUTTON))
-    {
-        PlaySE(SE_SELECT);
-        gTasks[taskId].func = Task_HandleChooseMonInput;
-        PartyMenuRemoveWindow(&sPartyMenuInternal->windowId[0]);
-        DisplayPartyMenuStdMessage(PARTY_MSG_USE_ON_WHICH_MON);
-    }
-}
-
-static void Task_TryCreateQuantityWindow(u8 taskId)
-{
-    if (CreateQuantityWindow(taskId))
-    {
-        gTasks[taskId].func = Task_HandleQuantityMenuInput;
-    }
-}
-
-static void Task_HandleQuantityPriceMenuInput(u8 taskId)
-{
-    s16 *data = gTasks[taskId].data;
-
-    if (AdjustQuantityAccordingToDPadInput(&tQuantity, tMaxQuantity))
-    {
-        tCost = tQuantity * 100 + 100;
-        PrintQuantityPrice(taskId);
-    }
-    else if (JOY_NEW(A_BUTTON))
-    {
-        PlaySE(SE_SELECT);
-        RemoveMoney(&gSaveBlock1Ptr->money, tCost);
-        PartyMenuRemoveWindow(&sPartyMenuInternal->windowId[0]);
-        PartyMenuRemoveWindow(&sPartyMenuInternal->windowId[1]);
-
-        if (gPartyMenu.action == PARTY_ACTION_LEVEL_TRAINING)
-        {
-            u32 money = GetMoney(&gSaveBlock1Ptr->money);
-            if (money < tMaxQuantity * 100 + 100)
-                tMaxQuantity = (money - 100) / 100;
-
-            Task_LevelUpByQuantity(taskId);
-        }
-    }
-    else if (JOY_NEW(B_BUTTON))
-    {
-        PlaySE(SE_SELECT);
-        gTasks[taskId].func = Task_HandleChooseMonInput;
-        PartyMenuRemoveWindow(&sPartyMenuInternal->windowId[0]);
-        DisplayPartyMenuStdMessage(PARTY_MSG_TRAIN_WHICH_MON);
-    }
-}
-
-static void Task_TryCreateQuantityPriceWindow(u8 taskId)
-{
-    if (CreateQuantityPriceWindow(taskId))
-    {
-        gTasks[taskId].func = Task_HandleQuantityPriceMenuInput;
-    }
-}
-
 #undef tQuantity
 #undef tMaxQuantity
+#undef tBaseCost
+#undef tCostPer
+#undef tCallback
 
 static bool8 CreateSelectionWindow(u8 taskId)
 {
@@ -5303,8 +5192,46 @@ void ItemUseCB_Medicine(u8 taskId, TaskFunc task)
     }
     else if (gPartyMenu.menuType == PARTY_MENU_TYPE_FIELD && IsQuantityHPRecoveryItem(item))
     {
+        u16 maxQuantity = 1;
+        u32 currentHP = GetMonData(mon, MON_DATA_HP, NULL);
+        u32 maxHP = GetMonData(mon, MON_DATA_MAX_HP, NULL);
+
+        if (!NotUsingHPEVItemOnShedinja(mon, item) || currentHP == 0 || currentHP >= maxHP)
+        {
+            DisplayPartyMenuMessage(gText_WontHaveEffect, FALSE);
+            ScheduleBgCopyTilemapToVram(2);
+            gTasks[taskId].func = Task_ReturnToChooseMonAfterText;
+            return;
+        }
+
+        u32 hpPerUse = GetItemEffect(item)[6];
+        switch (hpPerUse)
+        {
+        case ITEM6_HEAL_HP_FULL:
+            hpPerUse = maxHP;
+            break;
+        case ITEM6_HEAL_HP_HALF:
+            hpPerUse = maxHP / 2;
+            break;
+        case ITEM6_HEAL_HP_QUARTER:
+            hpPerUse = maxHP / 4;
+            break;
+        }
+
+        maxQuantity = (maxHP - currentHP + hpPerUse - 1) / hpPerUse;
+
+        if (GetItemConsumability(item))
+        {
+            u16 numItems = CountTotalItemQuantityInBag(item);
+            if (maxQuantity > numItems)
+                maxQuantity = numItems;
+        }
+
+        if (maxQuantity > 999)
+            maxQuantity = 999;
+
         PlaySE(SE_SELECT);
-        Task_TryCreateQuantityWindow(taskId);
+        CreateQuantityWindow(taskId, maxQuantity, Task_RestoreHPByQuantity);
         return;
     }
     else
@@ -6232,9 +6159,45 @@ static void UNUSED DisplayExpPoints(u8 taskId, TaskFunc task, u8 holdEffectParam
 
 void ItemUseCB_RareCandy(u8 taskId, TaskFunc task)
 {
+    struct Pokemon *mon = &gPlayerParty[gPartyMenu.slotId];
+    u16 item = gSpecialVar_ItemId;
+    u8 level = GetMonData(mon, MON_DATA_LEVEL);
+    u8 levelCap = B_RARE_CANDY_CAP ? GetCurrentLevelCap() : MAX_LEVEL;
+    u16 maxQuantity = 1;
+
+    if (level >= levelCap)
+    {
+        DisplayPartyMenuMessage(gText_WontHaveEffect, FALSE);
+        ScheduleBgCopyTilemapToVram(2);
+        gTasks[taskId].func = Task_ReturnToUseItemAfterText;
+        return;
+    }
+
+    u8 param = GetItemHoldEffectParam(item);
+    if (param == 0)
+    {
+        maxQuantity = levelCap - level;
+    }
+    else if (param <= EXP_30000)
+    {
+        u32 maxExp = gExperienceTables[gSpeciesInfo[GetMonData(mon, MON_DATA_SPECIES, NULL)].growthRate][levelCap];
+        u32 expPerCandy = sExpCandyExperienceTable[param - 1];
+        u16 maxCandies = (maxExp - GetMonData(mon, MON_DATA_EXP) + expPerCandy - 1) / expPerCandy;
+        maxQuantity = maxCandies;
+    }
+
+    if (GetItemConsumability(item))
+    {
+        u16 numCandies = CountTotalItemQuantityInBag(item);
+        if (maxQuantity > numCandies)
+            maxQuantity = numCandies;
+    }
+
+    if (maxQuantity > 999)
+        maxQuantity = 999;
+
     PlaySE(SE_SELECT);
-    Task_TryCreateQuantityWindow(taskId);
-    return;
+    CreateQuantityWindow(taskId, maxQuantity, Task_LevelUpByQuantity);
 }
 
 static void UpdateMonDisplayInfoAfterRareCandy(u8 slot, struct Pokemon *mon)
