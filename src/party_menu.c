@@ -1163,17 +1163,6 @@ static bool8 DisplayPartyPokemonDataForMisc(u8 slot)
             break;
         }
     }
-    else if (gPartyMenu.action == PARTY_ACTION_QUANTITY && GetItemEffectType(gSpecialVar_ItemId) == ITEM_EFFECT_RAISE_LEVEL)
-    {
-        u8 levelCap = MAX_LEVEL;
-        if (gPartyMenu.menuType == PARTY_MENU_TYPE_LEVEL_TRAINING
-          || (gPartyMenu.menuType == PARTY_MENU_TYPE_FIELD && GetItemEffectType(gSpecialVar_ItemId) == ITEM_EFFECT_RAISE_LEVEL && B_RARE_CANDY_CAP))
-            levelCap = GetCurrentLevelCap();
-
-        if (GetMonData(&gPlayerParty[slot], MON_DATA_LEVEL) < levelCap)
-            return FALSE;
-        DisplayPartyPokemonDescriptionData(slot, PARTYBOX_DESC_NO_USE);
-    }
     else
     {
         return FALSE;
@@ -1471,6 +1460,24 @@ static s8 *GetCurrentPartySlotPtr(void)
         return &gPartyMenu.slotId;
 }
 
+static bool8 IsQuantityHPRecoveryItem(u16 item)
+{
+    const u8 *effect = GetItemEffect(item);
+
+    if (effect == NULL)
+        return FALSE;
+
+    if ((effect[4] & (ITEM4_REVIVE | ITEM4_HEAL_HP)) == ITEM4_HEAL_HP)
+        return effect[6] != ITEM6_HEAL_HP_FULL && effect[6] != ITEM6_HEAL_HP_LVL_UP;
+    else
+        return FALSE;
+}
+
+static bool8 IsQuantityMenuItem(u16 item)
+{
+    return GetItemEffectType(gSpecialVar_ItemId) == ITEM_EFFECT_RAISE_LEVEL || IsQuantityHPRecoveryItem(gSpecialVar_ItemId);
+}
+
 static void HandleChooseMonSelection(u8 taskId, s8 *slotPtr)
 {
     if (*slotPtr == PARTY_SIZE)
@@ -1494,7 +1501,8 @@ static void HandleChooseMonSelection(u8 taskId, s8 *slotPtr)
                 if (gPartyMenu.menuType == PARTY_MENU_TYPE_IN_BATTLE)
                     sPartyMenuInternal->exitCallback = CB2_SetUpExitToBattleScreen;
 
-                PartyMenuRemoveWindow(&sPartyMenuInternal->windowId[1]);
+                if (!IsQuantityMenuItem(gSpecialVar_ItemId))
+                    PartyMenuRemoveWindow(&sPartyMenuInternal->windowId[1]);
                 gItemUseCB(taskId, Task_ClosePartyMenuAfterText);
             }
             break;
@@ -1581,14 +1589,11 @@ static void HandleChooseMonSelection(u8 taskId, s8 *slotPtr)
             }
             break;
         }
-        case PARTY_ACTION_QUANTITY:
+        case PARTY_ACTION_LEVEL_TRAINING:
             if (IsSelectedMonNotEgg((u8 *)slotPtr))
             {
                 PlaySE(SE_SELECT);
-                if (gPartyMenu.menuType == PARTY_MENU_TYPE_LEVEL_TRAINING)
-                    Task_TryCreateQuantityPriceWindow(taskId);
-                else
-                    Task_TryCreateQuantityWindow(taskId);
+                Task_TryCreateQuantityPriceWindow(taskId);
             }
             break;
         default:
@@ -2015,6 +2020,17 @@ static void Task_ReturnToChooseMonAfterText(u8 taskId)
                 DisplayPartyMenuStdMessage(PARTY_MSG_CHOOSE_MON);
             gTasks[taskId].func = Task_HandleChooseMonInput;
         }
+    }
+}
+
+static void Task_ReturnToUseItemAfterText(u8 taskId)
+{
+    if (IsPartyMenuTextPrinterActive() != TRUE)
+    {
+        ClearStdWindowAndFrameToTransparent(WIN_MSG, FALSE);
+        ClearWindowTilemap(WIN_MSG);
+        DisplayPartyMenuStdMessage(PARTY_MSG_USE_ON_WHICH_MON);
+        gTasks[taskId].func = Task_HandleChooseMonInput;
     }
 }
 
@@ -3088,7 +3104,6 @@ static u8 GetPartyMenuActionsType(struct Pokemon *mon)
     // PARTY_MENU_TYPE_MULTI_SHOWCASE
     // PARTY_MENU_TYPE_MOVE_RELEARNER
     // PARTY_MENU_TYPE_MINIGAME
-    // PARTY_MENU_TYPE_LEVEL_TRAINING
     default:
         actionType = ACTIONS_NONE;
         break;
@@ -3104,21 +3119,9 @@ static void Task_ReturnToTrainMonAfterText(u8 taskId)
 {
     if (IsPartyMenuTextPrinterActive() != TRUE)
     {
-        s8 slot = gPartyMenu.slotId;
-        if (GetMonData(&gPlayerParty[slot], MON_DATA_LEVEL) >= GetCurrentLevelCap())
-        {
-            DisplayPartyPokemonDescriptionData(slot, PARTYBOX_DESC_NO_USE);
-            ScheduleBgCopyTilemapToVram(0);
-        }
-
         ClearStdWindowAndFrameToTransparent(WIN_MSG, FALSE);
         ClearWindowTilemap(WIN_MSG);
-
-        if (gPartyMenu.menuType == PARTY_MENU_TYPE_LEVEL_TRAINING)
-            DisplayPartyMenuStdMessage(PARTY_MSG_TRAIN_WHICH_MON);
-        else
-            DisplayPartyMenuStdMessage(PARTY_MSG_USE_ON_WHICH_MON);
-
+        DisplayPartyMenuStdMessage(PARTY_MSG_TRAIN_WHICH_MON);
         gTasks[taskId].func = Task_HandleChooseMonInput;
     }
 }
@@ -3144,19 +3147,6 @@ static void PrintQuantityPrice(u8 taskId)
     AddTextPrinterParameterized(sPartyMenuInternal->windowId[0], FONT_NORMAL, gStringVar4, 0, 1, 0, 0);
 }
 
-static bool8 IsQuantityHPRecoveryItem(u16 item)
-{
-    const u8 *effect = GetItemEffect(item);
-
-    if (effect == NULL)
-        return FALSE;
-
-    if ((effect[4] & (ITEM4_REVIVE | ITEM4_HEAL_HP)) == ITEM4_HEAL_HP)
-        return effect[6] != ITEM6_HEAL_HP_FULL && effect[6] != ITEM6_HEAL_HP_LVL_UP;
-    else
-        return FALSE;
-}
-
 static bool8 NotUsingHPEVItemOnShedinja(struct Pokemon *mon, u16 item)
 {
     if (GetItemEffectType(item) == ITEM_EFFECT_HP_EV && GetMonData(mon, MON_DATA_SPECIES) == SPECIES_SHEDINJA)
@@ -3179,7 +3169,7 @@ static bool8 CreateQuantityWindow(u8 taskId)
         {
             DisplayPartyMenuMessage(gText_WontHaveEffect, FALSE);
             ScheduleBgCopyTilemapToVram(2);
-            gTasks[taskId].func = Task_ReturnToTrainMonAfterText;
+            gTasks[taskId].func = Task_ReturnToUseItemAfterText;
             return FALSE;
         }
 
@@ -3263,7 +3253,7 @@ static bool8 CreateQuantityPriceWindow(u8 taskId)
     s16 *data = gTasks[taskId].data;
     struct Pokemon *mon = &gPlayerParty[gPartyMenu.slotId];
 
-    if (gPartyMenu.menuType == PARTY_MENU_TYPE_LEVEL_TRAINING)
+    if (gPartyMenu.action == PARTY_ACTION_LEVEL_TRAINING)
     {
         u8 level = GetMonData(mon, MON_DATA_LEVEL);
         u8 levelCap = GetCurrentLevelCap();
@@ -3312,7 +3302,7 @@ static void Task_LevelUpByQuantity(u8 taskId)
 
     u32 experience = GetMonData(mon, MON_DATA_EXP);
 
-    if (gPartyMenu.menuType == PARTY_MENU_TYPE_FIELD)
+    if (gPartyMenu.action == PARTY_ACTION_USE_ITEM)
     {
         u8 param = GetItemHoldEffectParam(item);
         if (param == 0)
@@ -3331,7 +3321,7 @@ static void Task_LevelUpByQuantity(u8 taskId)
             }
         }
     }
-    else if (gPartyMenu.menuType == PARTY_MENU_TYPE_LEVEL_TRAINING)
+    else if (gPartyMenu.action == PARTY_ACTION_LEVEL_TRAINING)
     {
         experience = gExperienceTables[gSpeciesInfo[GetMonData(mon, MON_DATA_SPECIES, NULL)].growthRate][sInitialLevel + tQuantity];
     }
@@ -3374,7 +3364,7 @@ static void Task_LevelUpByQuantity(u8 taskId)
         DisplayPartyMenuMessage(gStringVar4, FALSE);
         ScheduleBgCopyTilemapToVram(2);
         if (CheckBagHasItem(item, 1))
-            gTasks[taskId].func = Task_ReturnToTrainMonAfterText;
+            gTasks[taskId].func = Task_ReturnToUseItemAfterText;
         else
             gTasks[taskId].func = Task_ClosePartyMenuAfterText;
     }
@@ -3430,10 +3420,7 @@ static void Task_HandleQuantityMenuInput(u8 taskId)
         PlaySE(SE_SELECT);
         gTasks[taskId].func = Task_HandleChooseMonInput;
         PartyMenuRemoveWindow(&sPartyMenuInternal->windowId[0]);
-        if (gPartyMenu.menuType == PARTY_MENU_TYPE_FIELD)
-            DisplayPartyMenuStdMessage(PARTY_MSG_USE_ON_WHICH_MON);
-        else if (gPartyMenu.menuType == PARTY_MENU_TYPE_LEVEL_TRAINING)
-            DisplayPartyMenuStdMessage(PARTY_MSG_TRAIN_WHICH_MON);
+        DisplayPartyMenuStdMessage(PARTY_MSG_USE_ON_WHICH_MON);
     }
 }
 
@@ -3461,7 +3448,7 @@ static void Task_HandleQuantityPriceMenuInput(u8 taskId)
         PartyMenuRemoveWindow(&sPartyMenuInternal->windowId[0]);
         PartyMenuRemoveWindow(&sPartyMenuInternal->windowId[1]);
 
-        if (gPartyMenu.menuType == PARTY_MENU_TYPE_LEVEL_TRAINING)
+        if (gPartyMenu.action == PARTY_ACTION_LEVEL_TRAINING)
         {
             u32 money = GetMoney(&gSaveBlock1Ptr->money);
             if (money < tMaxQuantity * 100 + 100)
@@ -5150,13 +5137,6 @@ void CB2_ShowPartyMenuForItemUse(void)
         task = Task_SetSacredAshCB;
         msgId = PARTY_MSG_NONE;
     }
-    else if (menuType == PARTY_MENU_TYPE_FIELD && 
-      (GetItemEffectType(gSpecialVar_ItemId) == ITEM_EFFECT_RAISE_LEVEL || IsQuantityHPRecoveryItem(gSpecialVar_ItemId)))
-    {
-        partyAction = PARTY_ACTION_QUANTITY;
-        task = Task_HandleChooseMonInput;
-        msgId = PARTY_MSG_USE_ON_WHICH_MON;
-    }
     else
     {
         if (GetItemPocket(gSpecialVar_ItemId) == POCKET_TM_HM)
@@ -5320,6 +5300,12 @@ void ItemUseCB_Medicine(u8 taskId, TaskFunc task)
     if (NotUsingHPEVItemOnShedinja(mon, item) == FALSE)
     {
         cannotUse = TRUE;
+    }
+    else if (gPartyMenu.menuType == PARTY_MENU_TYPE_FIELD && IsQuantityHPRecoveryItem(item))
+    {
+        PlaySE(SE_SELECT);
+        Task_TryCreateQuantityWindow(taskId);
+        return;
     }
     else
     {
@@ -6114,10 +6100,10 @@ static void CB2_ReturnToPartyMenuWhileLearningMove(void)
 {
     if (sFinalLevel != 0)
         SetMonData(&gPlayerParty[gPartyMenu.slotId], MON_DATA_LEVEL, &sFinalLevel); // to avoid displaying incorrect level
-    if (gPartyMenu.menuType == PARTY_MENU_TYPE_FIELD && gPartyMenu.action == PARTY_ACTION_QUANTITY && CheckBagHasItem(gSpecialVar_ItemId, 1))
-        InitPartyMenu(PARTY_MENU_TYPE_FIELD, PARTY_LAYOUT_SINGLE, PARTY_ACTION_QUANTITY, TRUE, PARTY_MSG_NONE, Task_ReturnToPartyMenuWhileLearningMove, gPartyMenu.exitCallback);
-    else if (gPartyMenu.menuType == PARTY_MENU_TYPE_LEVEL_TRAINING && GetMoney(&gSaveBlock1Ptr->money) >= 200)
-        InitPartyMenu(PARTY_MENU_TYPE_LEVEL_TRAINING, PARTY_LAYOUT_SINGLE, PARTY_ACTION_QUANTITY, TRUE, PARTY_MSG_TRAIN_WHICH_MON, Task_ReturnToPartyMenuWhileLearningMove, CB2_ReturnToField);
+    if (gPartyMenu.menuType == PARTY_MENU_TYPE_FIELD && CheckBagHasItem(gSpecialVar_ItemId, 1) && IsQuantityMenuItem(gSpecialVar_ItemId))
+        InitPartyMenu(PARTY_MENU_TYPE_FIELD, PARTY_LAYOUT_SINGLE, PARTY_ACTION_USE_ITEM, TRUE, PARTY_MSG_NONE, Task_ReturnToPartyMenuWhileLearningMove, gPartyMenu.exitCallback);
+    else if (gPartyMenu.action == PARTY_ACTION_LEVEL_TRAINING && GetMoney(&gSaveBlock1Ptr->money) >= 200)
+        InitPartyMenu(PARTY_MENU_TYPE_FIELD, PARTY_LAYOUT_SINGLE, PARTY_ACTION_LEVEL_TRAINING, TRUE, PARTY_MSG_TRAIN_WHICH_MON, Task_ReturnToPartyMenuWhileLearningMove, CB2_ReturnToField);
     else
         InitPartyMenu(PARTY_MENU_TYPE_FIELD, PARTY_LAYOUT_SINGLE, PARTY_ACTION_CHOOSE_MON, TRUE, PARTY_MSG_NONE, Task_ReturnToPartyMenuWhileLearningMove, gPartyMenu.exitCallback);
 }
@@ -6244,6 +6230,13 @@ static void UNUSED DisplayExpPoints(u8 taskId, TaskFunc task, u8 holdEffectParam
     gTasks[taskId].func = task;
 }
 
+void ItemUseCB_RareCandy(u8 taskId, TaskFunc task)
+{
+    PlaySE(SE_SELECT);
+    Task_TryCreateQuantityWindow(taskId);
+    return;
+}
+
 static void UpdateMonDisplayInfoAfterRareCandy(u8 slot, struct Pokemon *mon)
 {
     SetPartyMonAilmentGfx(mon, &sPartyMenuBoxes[slot]);
@@ -6361,17 +6354,19 @@ static void Task_TryLearningNextMove(u8 taskId)
 
 static void CB2_ReturnToPartyMenuUsingCandy(void)
 {
+    gItemUseCB = ItemUseCB_RareCandy;
     SetMainCallback2(CB2_ShowPartyMenuForItemUse);
 }
 
 static void CB2_ReturnToPartyMenuForLevelTraining(void)
 {
-    InitPartyMenu(PARTY_MENU_TYPE_LEVEL_TRAINING, PARTY_LAYOUT_SINGLE, PARTY_ACTION_QUANTITY, TRUE, PARTY_MSG_TRAIN_WHICH_MON, Task_HandleChooseMonInput, CB2_ReturnToField);
+    InitPartyMenu(PARTY_MENU_TYPE_CHOOSE_MON, PARTY_LAYOUT_SINGLE, PARTY_ACTION_LEVEL_TRAINING, TRUE, PARTY_MSG_TRAIN_WHICH_MON, Task_HandleChooseMonInput, CB2_ReturnToField);
 }
 
 static void PartyMenuTryEvolution(u8 taskId)
 {
     struct Pokemon *mon = &gPlayerParty[gPartyMenu.slotId];
+    u16 item = gSpecialVar_ItemId;
     u32 targetSpecies = SPECIES_NONE;
     bool32 canStopEvo = TRUE;
 
@@ -6385,10 +6380,10 @@ static void PartyMenuTryEvolution(u8 taskId)
     {
         GetEvolutionTargetSpecies(mon, EVO_MODE_NORMAL, ITEM_NONE, NULL, &canStopEvo, DO_EVO);
         FreePartyPointers();
-        if (gPartyMenu.menuType == PARTY_MENU_TYPE_FIELD && gPartyMenu.action == PARTY_ACTION_QUANTITY
-          && GetItemEffectType(gSpecialVar_ItemId) == ITEM_EFFECT_RAISE_LEVEL && CheckBagHasItem(gSpecialVar_ItemId, 1))
+        if (gPartyMenu.action == PARTY_ACTION_USE_ITEM && GetItemEffectType(item) == ITEM_EFFECT_RAISE_LEVEL
+          && CheckBagHasItem(item, 1))
             gCB2_AfterEvolution = CB2_ReturnToPartyMenuUsingCandy;
-        else if (gPartyMenu.menuType == PARTY_MENU_TYPE_LEVEL_TRAINING && GetMoney(&gSaveBlock1Ptr->money) >= 200)
+        else if (gPartyMenu.action == PARTY_ACTION_LEVEL_TRAINING && GetMoney(&gSaveBlock1Ptr->money) >= 200)
             gCB2_AfterEvolution = CB2_ReturnToPartyMenuForLevelTraining;
         else
             gCB2_AfterEvolution = gPartyMenu.exitCallback;
@@ -6397,12 +6392,9 @@ static void PartyMenuTryEvolution(u8 taskId)
     }
     else
     {
-        if (gPartyMenu.menuType == PARTY_MENU_TYPE_FIELD && gPartyMenu.action == PARTY_ACTION_QUANTITY
-          && GetItemEffectType(gSpecialVar_ItemId) == ITEM_EFFECT_RAISE_LEVEL && CheckBagHasItem(gSpecialVar_ItemId, 1))
-            gTasks[taskId].func = Task_ReturnToTrainMonAfterText;
-        else if (gPartyMenu.menuType == PARTY_MENU_TYPE_FIELD && CheckBagHasItem(gSpecialVar_ItemId, 1))
-            gTasks[taskId].func = Task_ReturnToChooseMonAfterText;
-        else if (gPartyMenu.menuType == PARTY_MENU_TYPE_LEVEL_TRAINING && GetMoney(&gSaveBlock1Ptr->money) >= 200)
+        if (gPartyMenu.action == PARTY_ACTION_USE_ITEM && CheckBagHasItem(item, 1))
+            gTasks[taskId].func = Task_ReturnToUseItemAfterText;
+        else if (gPartyMenu.action == PARTY_ACTION_LEVEL_TRAINING && GetMoney(&gSaveBlock1Ptr->money) >= 200)
             gTasks[taskId].func = Task_ReturnToTrainMonAfterText;
         else
             gTasks[taskId].func = Task_ClosePartyMenuAfterText;
@@ -8459,7 +8451,7 @@ static void Task_ShowLevelTrainingMenu(u8 taskId)
     if (!gPaletteFade.active)
     {
         CleanupOverworldWindowsAndTilemaps();
-        InitPartyMenu(PARTY_MENU_TYPE_LEVEL_TRAINING, PARTY_LAYOUT_SINGLE, PARTY_ACTION_QUANTITY, TRUE, PARTY_MSG_TRAIN_WHICH_MON, Task_HandleChooseMonInput, CB2_ReturnToField);
+        InitPartyMenu(PARTY_MENU_TYPE_CHOOSE_MON, PARTY_LAYOUT_SINGLE, PARTY_ACTION_LEVEL_TRAINING, TRUE, PARTY_MSG_TRAIN_WHICH_MON, Task_HandleChooseMonInput, CB2_ReturnToField);
         DestroyTask(taskId);
     }
 }
