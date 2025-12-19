@@ -47,8 +47,8 @@
 #define FLAG_DEXNAV_GET       0x21 // DexNav shows in start menu
 #define FLAG_DETECTOR_MODE    0x22 // Allow player to find hidden mons
 #define FLAG_SEARCHING        0x23 // Searching for mon DexNav
-#define FLAG_UNUSED_0x024     0x24 // Unused Flag
-#define FLAG_UNUSED_0x025     0x25 // Unused Flag
+#define FLAG_SEEKER_CHARGING  0x24 // VS Seeker!
+#define FLAG_DOWSING_FLAG     0x25 // Dowsing from ORAS instead of lame Itemfinder from Gen 3
 #define FLAG_UNUSED_0x026     0x26 // Unused Flag
 #define FLAG_UNUSED_0x027     0x27 // Unused Flag
 #define FLAG_UNUSED_0x028     0x28 // Unused Flag
