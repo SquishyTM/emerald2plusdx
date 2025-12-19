@@ -203,21 +203,20 @@ RustboroCity_Gym_Text_ReceivedStoneBadge:
 	.string "from ROXANNE.$"
 
 RustboroCity_Gym_Text_StoneBadgeInfoTakeThis:
-	.string "The STONE BADGE heightens the ATTACK\n"
-	.string "power of your POKéMON.\p"
-	.string "It also enables them to use the HM move\n"
-	.string "CUT outside of battle.\p"
+	.string "The STONE BADGE enables the use\n"
+	.string "of the HM move CUT outside of battle\l"
+	.string "by your Pokémon.\p"
 	.string "Please take this with you, too.$"
 
 RustboroCity_Gym_Text_ExplainBulldoze:
 	.string "That TECHNICAL MACHINE, TM39,\n"
 	.string "contains Bulldoze.\p"
-	.string "It not only inflicts damage by dropping\n"
-	.string "rocks, it also lowers SPEED.\p"
+	.string "It inflicts damage by stomping\n"
+	.string "the ground, making targets slower!\p"
 	.string "If you use a TM, it instantly teaches\n"
 	.string "the move to a POKéMON.\p"
-	.string "Remember, a TM can be used only once,\n"
-	.string "so think before you use it.$"
+	.string "Remember, a TM can be used endlessly,\n"
+	.string "so feel free to experiment away!$"
 
 RustboroCity_Gym_Text_RoxannePostBattle:
 	.string "Since you are so strong, you should\n"
