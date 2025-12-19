@@ -1607,7 +1607,7 @@ static void HandleChooseMonSelection(u8 taskId, s8 *slotPtr)
                 }
 
                 PlaySE(SE_SELECT);
-                CreateQuantityPriceWindow(taskId, levelCap - level, 100, 100, Task_LevelUpByQuantity);
+                CreateQuantityPriceWindow(taskId, levelCap - level, 250, 250, Task_LevelUpByQuantity);
             }
             break;
         default:

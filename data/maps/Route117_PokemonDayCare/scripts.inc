@@ -27,15 +27,11 @@ Route117_DayCare_Trainer_TrainMon::
 
 Route117_DayCare_Trainer_Text_DoYouWantToRaise::
 	.string "Roooah! Want to train your weak POKéMON \n"
-	.string "to the max level? \p"
-	.string "(Editor's note: 'Max' here means your\n"
-	.string "current level cap.)$"
+	.string "to the max level? $"
 
 Route117_DayCare_Trainer_Text_LetsTrain::
-	.string "Roargh! Pick the weakling!$"
+	.string "Roargh! Pick the weaklings!$"
 
 Route117_DayCare_Trainer_Text_SeeYa::
-	.string "Awh yeah! This is now one beefy \n"
-	.string "team! Ready to beat 10 gyms!$"
-	.string "Training never ends! I'll see ya \n"
+	.string "Training never ends! I'll see you \n"
 	.string "again very soon!$"
