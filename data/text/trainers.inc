@@ -295,9 +295,8 @@ Route104_Text_IvanPostBattle:
 	.string "I forgot I had to raise my POKéMON…$"
 
 Route104_Text_BillyIntro:
-	.string "I've just given my POKéMON\n"
-	.string "berries to hold, and\l"
-	.string "now they're unstoppable!$"
+	.string "I've just given my POKéMON berries to\n"
+	.string "hold, and now they're unstoppable!$"
 
 Route104_Text_BillyDefeat:
 	.string "Waah! You're too strong!\n"

@@ -544,7 +544,9 @@ LittlerootTown_ProfessorBirchsLab_EventScript_ReceivePokedex::
 	message LittlerootTown_ProfessorBirchsLab_Text_ReceivedPokedex
 	waitfanfare
 	setflag FLAG_SYS_POKEDEX_GET
+	playfanfare MUS_OBTAIN_ITEM
 	message LittlerootTown_ProfessorBirchsLab_Text_ReceivedDexNav
+	waitfanfare
 	setflag FLAG_DEXNAV_GET
 	special SetUnlockedPokedexFlags
 	setflag FLAG_RECEIVED_POKEDEX_FROM_BIRCH

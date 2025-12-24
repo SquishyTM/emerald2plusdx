@@ -2540,7 +2540,7 @@ Gender: Male
 Music: Rich
 Items: Full Restore
 Double Battle: No
-AI: Check Viability / Basic Trainer / Smart Switching / Try to Faint
+AI: Basic Trainer
 
 Mankey @ Scope Lens
 Level: 14
@@ -4149,7 +4149,7 @@ Pic: Psychic M
 Gender: Male
 Music: Intense
 Double Battle: No
-AI: Smart Trainer
+AI: Smart Trainer / Prediction
 
 Kirlia
 Level: 25
@@ -4843,7 +4843,7 @@ Gender: Female
 Music: Female
 Items: Super Potion / Super Potion
 Double Battle: No
-AI: Smart Trainer
+AI: Smart Trainer / Prediction
 
 Geodude
 Level: 16
@@ -4879,7 +4879,7 @@ Gender: Male
 Music: Male
 Items: Super Potion
 Double Battle: No
-AI: Smart Trainer / Ace Pokemon
+AI: Smart Trainer / Prediction / Ace Pokemon
 
 Machop
 Level: 21
@@ -4912,7 +4912,7 @@ Gender: Male
 Music: Male
 Items: Hyper Potion / Hyper Potion
 Double Battle: No
-AI: Smart Trainer / Ace Pokemon
+AI: Smart Trainer / Prediction / Ace Pokemon
 
 Togedemaru
 Level: 31
@@ -5547,7 +5547,7 @@ Pic: Pokefan M
 Gender: Male
 Music: Twins
 Double Battle: No
-AI: Smart Trainer
+AI: Smart Trainer / Prediction
 
 Swellow @ Flame Orb
 Ability: Guts
@@ -5692,7 +5692,7 @@ Pic: Pokefan F
 Gender: Female
 Music: Twins
 Double Battle: No
-AI: Smart Trainer
+AI: Smart Trainer / Prediction
 
 Lilligant @ Sitrus Berry
 Ability: Own Tempo
@@ -5918,7 +5918,7 @@ Pic: Expert F
 Gender: Female
 Music: Intense
 Double Battle: No
-AI: Smart Trainer
+AI: Smart Trainer / Prediction
 
 OmaeWa (Hitmonchan) @ Punching Glove
 Ability: Iron Fist
@@ -6092,7 +6092,7 @@ Pic: Youngster
 Gender: Male
 Music: Male
 Double Battle: No
-AI: Smart Trainer
+AI: Smart Trainer / Prediction
 
 Joey (Pikachu) @ Light Ball
 Level: 15
@@ -9655,7 +9655,7 @@ Pic: Brendan
 Gender: Male
 Music: Male
 Double Battle: No
-AI: Smart Trainer
+AI: Smart Trainer / Prediction
 
 Lairon
 Level: 25
@@ -9712,7 +9712,7 @@ Pic: Brendan
 Gender: Male
 Music: Male
 Double Battle: No
-AI: Smart Trainer
+AI: Smart Trainer / Prediction
 
 Zangoose
 Level: 27
@@ -9773,7 +9773,7 @@ Pic: Brendan
 Gender: Male
 Music: Male
 Double Battle: No
-AI: Smart Trainer
+AI: Smart Trainer / Prediction
 
 Masquerain
 Level: 27
@@ -9834,7 +9834,7 @@ Pic: May
 Gender: Female
 Music: Female
 Double Battle: No
-AI: Smart Trainer
+AI: Smart Trainer / Prediction
 
 Seviper
 Level: 25
@@ -9891,7 +9891,7 @@ Pic: May
 Gender: Female
 Music: Female
 Double Battle: No
-AI: Smart Trainer
+AI: Smart Trainer / Prediction
 
 Seviper
 Level: 27
@@ -9952,7 +9952,7 @@ Pic: May
 Gender: Female
 Music: Female
 Double Battle: No
-AI: Smart Trainer
+AI: Smart Trainer / Prediction
 
 Masquerain
 Level: 27
@@ -11272,7 +11272,7 @@ Pic: Lass
 Gender: Female
 Music: Female
 Double Battle: No
-AI: Smart Trainer
+AI: Smart Trainer / Prediction
 
 Azumarill
 Level: 32
@@ -11673,7 +11673,7 @@ Pic: Hiker
 Gender: Male
 Music: Hiker
 Double Battle: No
-AI: Basic Trainer
+AI: Basic Trainer / Will Suicide
 
 Golem @ Choice Scarf
 Level: 30

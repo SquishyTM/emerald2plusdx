@@ -1033,10 +1033,10 @@ Route104_Text_LikeFillingMouthWithSeedsTakeThis:
 
 Route104_Text_TMsAreOneTimeUse:
 	.string "A word of advice!\p"
-	.string "A TM, TECHNICAL MACHINE, is good only\n"
-	.string "for one-time use.\p"
-	.string "Once you use it, it's gone.\n"
-	.string "Think twice before using it!$"
+	.string "TMs, or Technical Machines, are good\n"
+	.string "to use as often as you'd like.\p"
+	.string "They'll never break.\n"
+	.string "Technology is amazing, isn't it?$"
 
 Route104_Text_DontNeedThisTakeIt:
 	.string "This FLOWER SHOP started selling\n"
