@@ -11956,9 +11956,9 @@ const struct Item gItemsInfo[] =
         .name = ITEM_NAME("TM39"),
         .price = 3000,
         .description = COMPOUND_STRING(
-            "Attacks by stomping\n"
-            "the ground violently.\n"
-            "Lowers the foe's Speed."),
+            "Stomps the ground\n"
+            "violently. Hits and\n"
+            "lowers Speed of all."),
         .importance = I_REUSABLE_TMS,
         .pocket = POCKET_TM_HM,
         .type = ITEM_USE_PARTY_MENU,
